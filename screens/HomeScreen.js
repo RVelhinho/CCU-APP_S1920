@@ -11,11 +11,16 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <ScrollView
+      <View style={styles.SearchDestinationContainer}>
+          <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
+          </TextInput>
+      </View>
+      {/*<ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
@@ -64,7 +69,7 @@ export default function HomeScreen() {
             navigation/MainTabNavigator.js
           </MonoText>
         </View>
-      </View>
+      </View>*/}
     </View>
   );
 }
@@ -112,6 +117,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  SearchDestinationContainer:{
+    height: 40,
+    marginTop: 100,
+    alignItems: 'center',
+    shadowColor: '#333',
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  SearchDestinationInput:{
+    width: 180,
+    height: 40,
+    textAlign: 'center',
+    fontSize: 20,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'rgba(0,0,0, 0.8)',
   },
   developmentModeText: {
     marginBottom: 20,
