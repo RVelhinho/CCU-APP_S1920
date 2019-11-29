@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     borderColor: 'rgba(0,0,0, 0.8)',
-    elevation: 3,
   },
   developmentModeText: {
     marginBottom: 20,
