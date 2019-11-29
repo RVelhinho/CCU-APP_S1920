@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   titleContainer:{
-    paddingTop: 50,
+    paddingTop: 120,
     height: 100,
     alignItems:'center',
     justifyContent:'center',
@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   imageContainer:{
-    marginTop: 30,
+    marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   awaitingValidationContainer:{
-    marginTop: 50,
+    marginTop: 70,
     height: 200,
     alignItems: 'center',
   },
