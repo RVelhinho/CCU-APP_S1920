@@ -35,21 +35,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   titleContainer:{
-    paddingTop: 120,
+    paddingTop: 30,
     height: 100,
     alignItems:'center',
-    justifyContent:'center',
   },
   title:{
-    fontSize: 40,
+    fontSize: 35,
   },
   imageContainer:{
-    marginTop: 50,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   awaitingValidationContainer:{
-    marginTop: 70,
+    marginTop: 20,
     height: 200,
     alignItems: 'center',
   },

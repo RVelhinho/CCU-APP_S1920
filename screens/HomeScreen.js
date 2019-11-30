@@ -13,12 +13,20 @@ import {
 
 import { MonoText } from '../components/StyledText';
 import { TextInput } from 'react-native-gesture-handler';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
+
+const locations_json = require('../locations.json');
+const green_stations = ['Alameda', 'Areeiro', 'Roma'];
+const yellow_stations = ['Entrecampos', 'Campo Pequeno', 'Saldanha']
+const {width, height} = Dimensions.get('screen')
 
 export default function HomeScreen() {
   const [latitude, setlatitude] = React.useState(null);
   const [longitude, setlongitude] = React.useState(null);
+  const [locations, setLocations] = React.useState(locations_json);
+  const [destination, setDestination] = React.useState(null);
+  const [isVisible, setIsVisible] = React.useState(false);
   React.useEffect(async () =>{
     const {status} = await Permissions.getAsync(Permissions.LOCATION)
     if ( status != 'granted'){
@@ -27,9 +35,49 @@ export default function HomeScreen() {
     navigator.geolocation.getCurrentPosition(
       ({ coords: {latitude, longitude}}) => {setlatitude(latitude), setlongitude(longitude)},
       (error) => console.log('Error:', error),
-      { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
+      { enableHighAccuracy: true, timeout: 50000, maximumAge: 1000 },
     )
   }, []);
+  function onMarkerPress(location){
+    setDestination(location)
+    setIsVisible(true)
+  }
+  function onMapPress(){
+    setIsVisible(false)
+  }
+  renderStations = () =>{
+    return(
+      <View>
+        {
+          locations.map((location,idx) => {
+            const {
+              coords : {latitude, longitude}
+            } = location
+            const { station } = location
+            if (yellow_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/yellow.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            else if (green_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/green.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+          })
+        }
+      </View>
+    )
+  }
   return (
     <View style={styles.container}>
       <MapView style={styles.mapStyle}
@@ -42,62 +90,44 @@ export default function HomeScreen() {
                 showsUserLocation = {true}
                 followUserLocation = {true}
                 showsMyLocationButton = {true}
-                zoomEnabled = {true}>
+                zoomEnabled = {true}
+                onPress = {() => onMapPress()}>
+          {renderStations()}
       </MapView>
-          <View style={styles.SearchDestinationContainer}>
-            <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
-            </TextInput>
-        </View>
-      {/*<ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
-
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>*/}
+      <View style={styles.SearchDestinationContainer}>
+        <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
+        </TextInput>
+      </View>
+      {isVisible?  
+                  <View style = {styles.stationView}>
+                    <Text style = {styles.stationName}>
+                      {destination.station}
+                    </Text>
+                    <View style = {styles.topLine}>
+                      <Text style = {styles.endStationTop}>
+                        {destination.end_station_top}
+                      </Text>
+                      <Text style = {styles.arrivalTimesTop}>
+                        {destination.arrival_times_top.first}
+                        {' '}{' '}{' '}{' '}{' '}{' '}
+                        {destination.arrival_times_top.second}
+                        {' '}{' '}{' '}{' '}{' '}{' '}
+                        {destination.arrival_times_top.third}
+                      </Text>
+                    </View>
+                    <View style = {styles.botLine}>
+                      <Text style = {styles.endStationBot}>
+                          {destination.end_station_bot}
+                      </Text> 
+                      <Text style = {styles.arrivalTimeBot}>
+                        {destination.arrival_times_bot.first}
+                        {' '}{' '}{' '}{' '}{' '}{' '}
+                        {destination.arrival_times_bot.second}
+                        {' '}{' '}{' '}{' '}{' '}{' '}
+                        {destination.arrival_times_bot.third}
+                      </Text>
+                    </View>   
+                </View>:null}
     </View>
   );
 }
@@ -169,86 +199,57 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0, 0.8)',
     backgroundColor: "white",
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+  markersStyle:{
+    width: 50,
+    height: 50,
   },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
+  stationView:{
+    flex: 1,
     position: 'absolute',
+    width: width * 1.05,
+    height: height * 0.3,
     bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    paddingLeft: 20,
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    borderWidth: .2,
+    borderRadius: 10,
+    borderColor: 'rgba(0,0,0, 0.8)',
   },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
+  stationName:{
+    fontSize: 30,
+    alignSelf: 'flex-start',
   },
-  navigationFilename: {
-    marginTop: 5,
+  endStationTop:{
+    fontSize: 20,
+    width: width * 0.4,
+    alignSelf: 'flex-start',
   },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
+  endStationBot:{
+    fontSize: 20,
+    width: width * 0.4,
+    alignSelf: 'flex-start',
   },
-  helpLink: {
-    paddingVertical: 15,
+  topLine:{
+    paddingTop: 50,
+    height: 40,
+    flexDirection: 'row',
   },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+  botLine:{
+    paddingTop: 50,
+    height: 40,
+    flexDirection: 'row',
+  },
+  arrivalTimesTop:{
+    width: width * 0.6,
+    fontSize: 20,
+    paddingLeft: 20,
+    alignSelf: 'flex-start',
+  },
+  arrivalTimeBot:{
+    width: width * 0.6,
+    fontSize: 20,
+    paddingLeft: 20,
+    alignSelf: 'flex-start',
   },
 });

@@ -1,0 +1,116 @@
+[
+    {
+      "station": "Entrecampos",
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": "4.2",
+        "second": "7.5",
+        "third" : "12.2"
+        },
+      "coords": {
+        "latitude": 38.747033,
+        "longitude": -9.148014
+      }
+    },
+    {
+        "station": "Campo Pequeno",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+            "first": "4.2",
+            "second": "7.5",
+            "third" : "12.2"
+            },
+        "coords": {
+          "latitude": 38.741540,
+          "longitude": -9.146676
+        }
+      },
+      {
+        "station": "Saldanha",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": "4.2",
+        "second": "7.5",
+        "third" : "12.2"
+        },
+        "coords": {
+          "latitude": 38.735426,
+          "longitude": -9.145335
+        }
+      },
+      {
+        "station": "Alameda",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": "4.2",
+        "second": "7.5",
+        "third" : "12.2"
+        },
+        "coords": {
+          "latitude": 38.737191,
+          "longitude": -9.133867
+        }
+      },
+      {
+        "station": "Areeiro",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": "4.2",
+        "second": "7.5",
+        "third" : "12.2"
+        },
+        "coords": {
+          "latitude": 38.742598,
+          "longitude": -9.133808
+        }
+      },
+      {
+        "station": "Roma",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": "3.4",
+          "second": "5.3",
+          "third" : "10.2"
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": "4.2",
+        "second": "7.5",
+        "third" : "12.2"
+        },
+        "coords": {
+          "latitude": 38.748619,
+          "longitude": -9.141581
+        }
+      }
+  ]
