@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
@@ -43,6 +44,9 @@ export default function HomeScreen() {
     setIsVisible(true)
   }
   function onMapPress(){
+    setIsVisible(false)
+  }
+  function onArrowPress(){
     setIsVisible(false)
   }
   renderStations = () =>{
@@ -95,24 +99,47 @@ export default function HomeScreen() {
           {renderStations()}
       </MapView>
       <View style={styles.SearchDestinationContainer}>
+        <Ionicons
+          name={'md-search'}
+          size={30}
+          color={'lightgrey'}
+          style={{width: width * 0.06, paddingLeft: 5}}
+        />
         <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
         </TextInput>
       </View>
       {isVisible?  
                   <View style = {styles.stationView}>
-                    <Text style = {styles.stationName}>
-                      {destination.station}
-                    </Text>
+                    <View style = {{flexDirection: 'row',justifyContent:'space-between', width: width}}>
+                      <Text style = {styles.stationName}>
+                        {destination.station}
+                      </Text>
+                      <Ionicons
+                        name={'md-close'}
+                        size={35}
+                        style={styles.arrowStyle}
+                        onPress={() => onArrowPress()}
+                      />
+                    </View>
+                    <View style={styles.descText}>
+                      <Text style = {{width: width * 0.3,fontSize:20, fontWeight:"bold", alignSelf:'flex-start'}}>Sentido:
+                      </Text>
+                      <Text style = {{width: width * 0.5,fontSize:20, fontWeight:"bold", alignSelf:'flex-start'}}>Tempos de chegada:
+                      </Text>
+                    </View>
                     <View style = {styles.topLine}>
                       <Text style = {styles.endStationTop}>
                         {destination.end_station_top}
                       </Text>
                       <Text style = {styles.arrivalTimesTop}>
                         {destination.arrival_times_top.first}
+                        <Text style = {{fontSize:15}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_top.second}
+                        <Text style = {{fontSize:15}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_top.third}
+                        <Text style = {{fontSize:15}}>min</Text>
                       </Text>
                     </View>
                     <View style = {styles.botLine}>
@@ -121,10 +148,13 @@ export default function HomeScreen() {
                       </Text> 
                       <Text style = {styles.arrivalTimeBot}>
                         {destination.arrival_times_bot.first}
+                        <Text style = {{fontSize:15}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_bot.second}
+                        <Text style = {{fontSize:15}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_bot.third}
+                        <Text style = {{fontSize:15}}>min</Text>
                       </Text>
                     </View>   
                 </View>:null}
@@ -183,21 +213,25 @@ const styles = StyleSheet.create({
   },
   SearchDestinationContainer:{
     flex: 1,
+    width: width * 0.7,
     height: 60,
-    width: Dimensions.get('window').width,
     marginTop: 90,
+    alignSelf: 'center',
     alignItems: 'center',
     position: "absolute",
-  },
-  SearchDestinationInput:{
-    width: 250,
-    height: 50,
-    textAlign: 'center',
-    fontSize: 25,
     borderWidth: .2,
     borderRadius: 10,
     borderColor: 'rgba(0,0,0, 0.8)',
     backgroundColor: "white",
+    flexDirection: "row",
+    paddingLeft: 10,
+  },
+  SearchDestinationInput:{
+    width: width* 0.5,
+    height: 60,
+    textAlign: 'center',
+    fontSize: 22,
+    paddingLeft: 25,
   },
   markersStyle:{
     width: 50,
@@ -217,39 +251,47 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0, 0.8)',
   },
   stationName:{
-    fontSize: 30,
-    alignSelf: 'flex-start',
+    fontSize: 25,
+    width: width * 0.45,
+    fontWeight:"bold",
+  },
+  arrowStyle:{
+    width: width * 0.1,
   },
   endStationTop:{
     fontSize: 20,
-    width: width * 0.4,
+    width: width * 0.3,
     alignSelf: 'flex-start',
   },
   endStationBot:{
     fontSize: 20,
-    width: width * 0.4,
+    width: width * 0.3,
     alignSelf: 'flex-start',
   },
+  descText:{
+    paddingTop:30,
+    flexDirection: 'row',
+  },
   topLine:{
-    paddingTop: 50,
+    paddingTop: 20,
     height: 40,
     flexDirection: 'row',
   },
   botLine:{
-    paddingTop: 50,
+    paddingTop: 30,
     height: 40,
     flexDirection: 'row',
   },
   arrivalTimesTop:{
-    width: width * 0.6,
+    width: width * 0.7,
     fontSize: 20,
-    paddingLeft: 20,
+    paddingLeft: 10,
     alignSelf: 'flex-start',
   },
   arrivalTimeBot:{
-    width: width * 0.6,
+    width: width * 0.7,
     fontSize: 20,
-    paddingLeft: 20,
+    paddingLeft: 10,
     alignSelf: 'flex-start',
   },
 });
