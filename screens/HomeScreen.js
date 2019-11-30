@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import images from '../assets/images/index.js';
 import {
   Image,
   Platform,
@@ -13,13 +14,14 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
-import { TextInput } from 'react-native-gesture-handler';
+import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import MapView, {Marker} from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
 
 const locations_json = require('../locations.json');
 const green_stations = ['Alameda', 'Areeiro', 'Roma'];
 const yellow_stations = ['Entrecampos', 'Campo Pequeno', 'Saldanha']
+const red_stations = ['Saldanha','Alameda']
 const {width, height} = Dimensions.get('screen')
 
 export default function HomeScreen() {
@@ -46,8 +48,36 @@ export default function HomeScreen() {
   function onMapPress(){
     setIsVisible(false)
   }
-  function onArrowPress(){
+  function onClosePress(){
     setIsVisible(false)
+  }
+  function switchLines(){
+    setDestination(prevState =>{
+      return  {...prevState, "end_station_top":destination.end_station_top_extra,
+                              "end_station_bot":destination.end_station_bot_extra,
+                              "arrival_times_top": {
+                                "first": destination.arrival_times_top_extra.first_extra,
+                                "second": destination.arrival_times_top_extra.second_extra,
+                                "third" : destination.arrival_times_top_extra.third_extra
+                            },
+                            "arrival_times_bot": {
+                              "first": destination.arrival_times_bot_extra.first_extra,
+                              "second": destination.arrival_times_bot_extra.first_extra,
+                              "third" : destination.arrival_times_bot_extra.first_extra
+                              },
+                              "end_station_top_extra":destination.end_station_top,
+                              "end_station_bot_extra":destination.end_station_bot,
+                              "arrival_times_top_extra": {
+                                "first_extra": destination.arrival_times_top.first,
+                                "second_extra": destination.arrival_times_top.second,
+                                "third_extra" : destination.arrival_times_top.third
+                            },
+                            "arrival_times_bot_extra": {
+                              "first_extra": destination.arrival_times_bot.first,
+                              "second_extra": destination.arrival_times_bot.first,
+                              "third_extra" : destination.arrival_times_bot.first
+                              }
+    }});
   }
   renderStations = () =>{
     return(
@@ -58,7 +88,27 @@ export default function HomeScreen() {
               coords : {latitude, longitude}
             } = location
             const { station } = location
-            if (yellow_stations.includes(station)){
+            if (yellow_stations.includes(station) && red_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/yellow_red.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            else if (green_stations.includes(station) && red_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/green_red.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            else if (yellow_stations.includes(station)){
               return(
                 <Marker key = {idx}
                         coordinate = {{latitude, longitude}}
@@ -114,11 +164,13 @@ export default function HomeScreen() {
                       <Text style = {styles.stationName}>
                         {destination.station}
                       </Text>
+                      {destination.isDouble? <TouchableOpacity onPress={() => switchLines()}><Image source={require('../assets/images/switch.png')} style={{marginTop:3}}></Image></TouchableOpacity>:null}
+                      <Image source={images[destination.rect_image]}></Image>
                       <Ionicons
                         name={'md-close'}
                         size={35}
-                        style={styles.arrowStyle}
-                        onPress={() => onArrowPress()}
+                        style={styles.closeStyle}
+                        onPress={() => onClosePress()}
                       />
                     </View>
                     <View style={styles.descText}>
@@ -255,7 +307,7 @@ const styles = StyleSheet.create({
     width: width * 0.45,
     fontWeight:"bold",
   },
-  arrowStyle:{
+  closeStyle:{
     width: width * 0.1,
   },
   endStationTop:{

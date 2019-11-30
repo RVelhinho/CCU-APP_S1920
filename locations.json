@@ -1,6 +1,8 @@
 [
     {
       "station": "Entrecampos",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
       "end_station_top" : "Odivelas",
       "arrival_times_top": {
           "first": "3.4",
@@ -20,6 +22,8 @@
     },
     {
         "station": "Campo Pequeno",
+        "isDouble" : false,
+        "rect_image": "yellow_rect",
         "end_station_top" : "Odivelas",
         "arrival_times_top": {
           "first": "2.1",
@@ -39,6 +43,8 @@
       },
       {
         "station": "Saldanha",
+        "isDouble" : true,
+        "rect_image": "yellow_red_rect",
         "end_station_top" : "Odivelas",
         "arrival_times_top": {
           "first": "5.2",
@@ -51,6 +57,18 @@
         "second": "6.4",
         "third" : "8.4"
         },
+        "end_station_top_extra" : "Aeroporto",
+        "arrival_times_top_extra": {
+          "first_extra": "3.5",
+          "second_extra": "7.1",
+          "third_extra" : "10.4"
+      },
+        "end_station_bot_extra" : "São Sebastião",
+        "arrival_times_bot_extra": {
+        "first_extra": "1.2",
+        "second_extra": "4.3",
+        "third_extra" : "7.2"
+        },
         "coords": {
           "latitude": 38.735426,
           "longitude": -9.145335
@@ -58,6 +76,8 @@
       },
       {
         "station": "Alameda",
+        "isDouble" : true,
+        "rect_image": "green_red_rect",
         "end_station_top" : "Telheiras",
         "arrival_times_top": {
           "first": "2.3",
@@ -70,6 +90,18 @@
         "second": "8.2",
         "third" : "12.5"
         },
+        "end_station_top_extra" : "Aeroporto",
+        "arrival_times_top_extra": {
+          "first_extra": "5.3",
+          "second_extra": "9.2",
+          "third_extra" : "12.3"
+      },
+        "end_station_bot_extra" : "São Sebastião",
+        "arrival_times_bot_extra": {
+        "first_extra": "3.5",
+        "second_extra": "6.2",
+        "third_extra" : "9.5"
+        },
         "coords": {
           "latitude": 38.737191,
           "longitude": -9.133867
@@ -77,6 +109,8 @@
       },
       {
         "station": "Areeiro",
+        "isDouble" : false,
+        "rect_image": "green_rect",
         "end_station_top" : "Telheiras",
         "arrival_times_top": {
           "first": "3.2",
@@ -96,6 +130,8 @@
       },
       {
         "station": "Roma",
+        "isDouble" : false,
+        "rect_image": "green_rect",
         "end_station_top" : "Telheiras",
         "arrival_times_top": {
           "first": "5.2",
