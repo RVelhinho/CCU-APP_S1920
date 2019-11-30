@@ -8,18 +8,46 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 import { TextInput } from 'react-native-gesture-handler';
+import MapView from 'react-native-maps';
+import * as Permissions from 'expo-permissions';
 
 export default function HomeScreen() {
+  const [latitude, setlatitude] = React.useState(null);
+  const [longitude, setlongitude] = React.useState(null);
+  React.useEffect(async () =>{
+    const {status} = await Permissions.getAsync(Permissions.LOCATION)
+    if ( status != 'granted'){
+      const response = await Permissions.askAsync(Permissions.LOCATION)
+    }
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: {latitude, longitude}}) => {setlatitude(latitude), setlongitude(longitude)},
+      (error) => console.log('Error:', error),
+      { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 },
+    )
+  }, []);
   return (
     <View style={styles.container}>
-      <View style={styles.SearchDestinationContainer}>
-          <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
-          </TextInput>
-      </View>
+      <MapView style={styles.mapStyle}
+                initialRegion={{
+                  latitude,
+                  longitude,
+                  latitudeDelta: 0.035,
+                  longitudeDelta: 0.024,
+                }}
+                showsUserLocation = {true}
+                followUserLocation = {true}
+                showsMyLocationButton = {true}
+                zoomEnabled = {true}>
+      </MapView>
+          <View style={styles.SearchDestinationContainer}>
+            <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
+            </TextInput>
+        </View>
       {/*<ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
@@ -118,19 +146,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  mapStyle: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
   SearchDestinationContainer:{
+    flex: 1,
     height: 60,
-    marginTop: 130,
+    width: Dimensions.get('window').width,
+    marginTop: 90,
     alignItems: 'center',
+    position: "absolute",
   },
   SearchDestinationInput:{
     width: 250,
     height: 50,
     textAlign: 'center',
     fontSize: 25,
-    borderWidth: 2,
+    borderWidth: .2,
     borderRadius: 10,
     borderColor: 'rgba(0,0,0, 0.8)',
+    backgroundColor: "white",
   },
   developmentModeText: {
     marginBottom: 20,
