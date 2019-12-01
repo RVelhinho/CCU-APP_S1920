@@ -10,26 +10,63 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions
+  Dimensions,
+  SafeAreaView,
+  FlatList
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import MapView, {Marker} from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
 
 const locations_json = require('../locations.json');
+const all_stations = ['Alameda', 'Areeiro', 'Roma','Entrecampos', 'Campo Pequeno', 'Saldanha']
 const green_stations = ['Alameda', 'Areeiro', 'Roma'];
 const yellow_stations = ['Entrecampos', 'Campo Pequeno', 'Saldanha']
 const red_stations = ['Saldanha','Alameda']
 const {width, height} = Dimensions.get('screen')
+
+const DATA = [
+  {
+    id: '1',
+    title: 'Alameda',
+  },
+  {
+    id: '2',
+    title: 'Areeiro',
+  },
+  {
+    id: '3',
+    title: 'Campo Pequeno',
+  },
+  {
+    id: '4',
+    title: 'Entrecampos',
+  },
+  {
+    id: '5',
+    title: 'Roma',
+  },
+  {
+    id: '6',
+    title: 'Saldanha',
+  },
+];
 
 export default function HomeScreen() {
   const [latitude, setlatitude] = React.useState(null);
   const [longitude, setlongitude] = React.useState(null);
   const [locations, setLocations] = React.useState(locations_json);
   const [destination, setDestination] = React.useState(null);
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [voyageOrigin, setVoyageOrigin] = React.useState(null);
+  const [voyageDestination, setVoyageDestination] = React.useState(null);
+  const [isVisible, setIsVisible] = React.useState({isStationSelected: false, isInputSelected: false, isVoyageSelected: false});
+  const [typingOrigin, setTypingOrigin] = React.useState('');
+  const [typingDestination, setTypingDestination] = React.useState('');
+  const [data, setData] = React.useState(DATA)
+  const [selectedInput, setSelecedInput] = React.useState('')
   React.useEffect(async () =>{
     const {status} = await Permissions.getAsync(Permissions.LOCATION)
     if ( status != 'granted'){
@@ -41,15 +78,65 @@ export default function HomeScreen() {
       { enableHighAccuracy: true, timeout: 50000, maximumAge: 1000 },
     )
   }, []);
+  function onTextChangeOrigin(typingOrigin){
+    const new_data = DATA.filter(function(item){
+      const item_data = item.title.startsWith(typingOrigin)? item: null
+      return item_data  
+    })
+    setData(new_data)
+    setTypingOrigin(typingOrigin)
+  }
+  function onTextChangeDestination(typingDestination){
+    const new_data = DATA.filter(function(item){
+      const item_data = item.title.startsWith(typingDestination)? item: null
+      return item_data  
+    })
+    setData(new_data)
+    setTypingDestination(typingDestination)
+  }
   function onMarkerPress(location){
     setDestination(location)
-    setIsVisible(true)
+    setIsVisible(prevState =>{
+      return  {...prevState,isStationSelected: true, isVoyageSelected:false}})
   }
   function onMapPress(){
-    setIsVisible(false)
-  }
+    setIsVisible(prevState =>{
+    return  {...prevState,isStationSelected: false, isVoyageSelected:false}})
+  } 
   function onClosePress(){
-    setIsVisible(false)
+    setIsVisible(prevState =>{
+    return  {...prevState,isStationSelected: false, isVoyageSelected:false}})
+  }
+  function onInputPressDestination(){
+    setData(DATA)
+    setIsVisible({isStationSelected: false, isInputSelected: true, isVoyageSelected:false})
+    setSelecedInput('destination')
+  }
+  function onInputPressOrigin(){
+    setData(DATA)
+    setSelecedInput('origin')
+  }
+  function onArrowBackPress(){
+    setIsVisible({isStationSelected: false, isInputSelected: false, isVoyageSelected: false})
+    setSelecedInput('')
+  }
+  function onItemPress(title){
+    setData(null)
+    selectedInput == 'destination' ? setTypingDestination(title): setTypingOrigin(title)
+  }
+  function onSearchPress(){
+    if (all_stations.includes(typingOrigin) && all_stations.includes(typingDestination)){
+      setIsVisible({isStationSelected: false, isInputSelected: false, isVoyageSelected:true})
+      locations.map((location,idx) => {
+        const { station } = location
+        if ( station == typingOrigin){
+          setVoyageOrigin(location)
+        }
+        else if ( station == typingDestination){
+          setVoyageDestination(location)
+        }
+      })
+    }
   }
   function switchLines(){
     setDestination(prevState =>{
@@ -62,8 +149,8 @@ export default function HomeScreen() {
                             },
                             "arrival_times_bot": {
                               "first": destination.arrival_times_bot_extra.first_extra,
-                              "second": destination.arrival_times_bot_extra.first_extra,
-                              "third" : destination.arrival_times_bot_extra.first_extra
+                              "second": destination.arrival_times_bot_extra.second_extra,
+                              "third" : destination.arrival_times_bot_extra.third_extra
                               },
                               "end_station_top_extra":destination.end_station_top,
                               "end_station_bot_extra":destination.end_station_bot,
@@ -74,10 +161,19 @@ export default function HomeScreen() {
                             },
                             "arrival_times_bot_extra": {
                               "first_extra": destination.arrival_times_bot.first,
-                              "second_extra": destination.arrival_times_bot.first,
-                              "third_extra" : destination.arrival_times_bot.first
+                              "second_extra": destination.arrival_times_bot.second,
+                              "third_extra" : destination.arrival_times_bot.third
                               }
     }});
+  }
+  function Item({title}) {
+      return (
+        <TouchableOpacity
+          style={styles.item}
+          onPress={ () => onItemPress(title)}>
+          <Text style={styles.title}>{title}</Text>
+        </TouchableOpacity>
+      );
   }
   renderStations = () =>{
     return(
@@ -148,17 +244,128 @@ export default function HomeScreen() {
                 onPress = {() => onMapPress()}>
           {renderStations()}
       </MapView>
-      <View style={styles.SearchDestinationContainer}>
+      {isVisible.isInputSelected? <View style={styles.wholePageContainer}>
+                                    <View style={styles.topContainer}>
+                                      <View style={{flexDirection:"row"}}>
+                                        <Ionicons
+                                            name={'ios-arrow-back'}
+                                            size={30}
+                                            color={'black'}
+                                            style={{width: width * 0.06, marginTop: 75,paddingLeft: 10}}
+                                            onPress={() => onArrowBackPress()}
+                                        />
+                                        <Ionicons
+                                            name={'md-radio-button-off'}
+                                            size={15}
+                                            color={'black'}
+                                            style={{width: width * 0.06, marginTop: 83, paddingLeft: 10}}
+                                        />
+                                        <Ionicons
+                                          name={'md-search'}
+                                          size={30}
+                                          color={'white'}
+                                          style={{width: width * 0.08, marginTop: 110, paddingLeft: 3, left: width * 0.75, alignItems:'center', backgroundColor:'white', borderWidth: 0.5,borderRadius: 100, borderColor: 'green',backgroundColor:'green'}}
+                                          onPress={() => onSearchPress()}
+                                        />
+                                      </View>
+                                      <Ionicons
+                                            name={'md-radio-button-on'}
+                                            size={15}
+                                            color={'black'}
+                                            style={{width: width * 1, marginTop: 20,paddingLeft:35}}
+                                        />
+                                      <View style={styles.SearchOriginContainer}>
+                                        <Ionicons
+                                          name={'md-search'}
+                                          size={30}
+                                          color={'lightgrey'}
+                                          style={{width: width * 0.06, paddingLeft: 5}}
+                                        />
+                                        <TextInput placeholder='Origem' style={styles.SearchDestinationInput} value={typingOrigin} onTouchStart={() => onInputPressOrigin()} onChangeText={typingOrigin => onTextChangeOrigin(typingOrigin)}>
+                                        </TextInput>
+                                      </View>
+                                      <View style={styles.SearchDestinationContainer}>
+                                        <Ionicons
+                                          name={'md-search'}
+                                          size={30}
+                                          color={'lightgrey'}
+                                          style={{width: width * 0.06, paddingLeft: 5}}
+                                        />
+                                        <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
+                                        </TextInput>
+                                      </View>
+                                    </View>
+                                    <View style={styles.botContainer}>
+                                      <Text style={{width: width, paddingTop:10, fontSize: 25, fontWeight: "bold",textAlign: 'center'}}>
+                                        Estações
+                                      </Text>
+                                      <SafeAreaView style={{marginTop: Constants.statusBarHeight}}>
+                                        <FlatList
+                                          data={data}
+                                          keyExtractor={item => item.id}
+                                          renderItem={({ item }) => (
+                                            <Item
+                                            title={item.title}
+                                            />
+                                          )
+                                        }
+                                        />
+                                      </SafeAreaView>
+                                    </View>
+                                  </View>
+      :<View style={styles.SearchDestinationContainer}>
         <Ionicons
           name={'md-search'}
           size={30}
           color={'lightgrey'}
           style={{width: width * 0.06, paddingLeft: 5}}
         />
-        <TextInput placeholder='Destino' style={styles.SearchDestinationInput}>
+        <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
         </TextInput>
-      </View>
-      {isVisible?  
+      </View>}
+      {isVisible.isVoyageSelected? <View>
+                                    
+                                    <View style={styles.VoyageContainer}>
+                                      <View style={{width: width, height: 40,flexDirection: 'row', justifyContent:"space-between"}}>
+                                        <Text style={{width: width *0.4,fontSize: 20,fontWeight:'bold'}}>Viagem</Text>
+                                        <Text style={{width: width *0.5,fontSize: 20,fontWeight:'bold'}}>Tempo de chegada</Text>
+                                        <Ionicons
+                                          name={'md-close'}
+                                          size={35}
+                                          style={styles.closeStyle}
+                                          onPress={() => onClosePress()}
+                                        />
+                                      </View>
+                                      <View style={styles.topLineVoyage}>
+                                        <Text style={{width: width * 0.3,fontSize: 20}}>{voyageOrigin.station}</Text>
+                                        <Text style = {styles.arrivalTimesTopVoyage}>
+                                          {Math.floor(voyageOrigin.arrival_times_top.first)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                          {' '}{' '}{' '}{' '}{' '}{' '}
+                                          {Math.floor(voyageOrigin.arrival_times_top.second)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                          {' '}{' '}{' '}{' '}{' '}{' '}
+                                          {Math.floor(voyageOrigin.arrival_times_top.third)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                        </Text>
+                                      </View>
+                                      <View style={styles.botLineVoyage}>
+                                        <Text style={{width:width * 0.3,fontSize: 20,}}>{voyageDestination.station}</Text>
+                                        <Text style = {styles.arrivalTimeBotVoyage}>
+                                          {Math.floor(voyageOrigin.arrival_times_top.first + voyageDestination.arrival_times_bot.first)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                          {' '}{' '}{' '}{' '}{' '}{' '}
+                                          {Math.floor(voyageOrigin.arrival_times_top.second + voyageDestination.arrival_times_bot.second)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                          {' '}{' '}{' '}{' '}{' '}{' '}
+                                          {Math.floor(voyageOrigin.arrival_times_top.third + voyageDestination.arrival_times_bot.third)}
+                                          <Text style = {{fontSize:15}}>min</Text>
+                                        </Text>
+                                      </View>
+                                    </View>
+                                  </View>
+                                    :null}
+      {isVisible.isStationSelected?  
                   <View style = {styles.stationView}>
                     <View style = {{flexDirection: 'row',justifyContent:'space-between', width: width}}>
                       <Text style = {styles.stationName}>
@@ -263,11 +470,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
-  SearchDestinationContainer:{
-    flex: 1,
+  SearchOriginContainer:{
     width: width * 0.7,
     height: 60,
-    marginTop: 90,
+    top: 60,
     alignSelf: 'center',
     alignItems: 'center',
     position: "absolute",
@@ -277,6 +483,46 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     paddingLeft: 10,
+  },
+  SearchDestinationContainer:{
+    width: width * 0.7,
+    height: 60,
+    top: 140 ,
+    alignSelf: 'center',
+    alignItems: 'center',
+    position: "absolute",
+    borderWidth: .2,
+    borderRadius: 10,
+    borderColor: 'rgba(0,0,0, 0.8)',
+    backgroundColor: "white",
+    flexDirection: "row",
+    paddingLeft: 10,
+  },
+  wholePageContainer:{
+    flex:1,
+    width: width,
+    height: height,
+    backgroundColor: 'lightgrey',
+    position: 'absolute',
+  },
+  topContainer:{
+    width: width,
+    height: height * 0.3,
+    backgroundColor: 'white',
+  },
+  botContainer:{
+    width: width,
+    height: height * 0.65,
+    marginTop: 15,
+    backgroundColor: 'white',
+  },
+  item: {
+    padding: 20,
+    borderWidth: .2,
+    backgroundColor: 'white',
+  },
+  title: {
+    fontSize: 32,
   },
   SearchDestinationInput:{
     width: width* 0.5,
@@ -345,5 +591,38 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingLeft: 10,
     alignSelf: 'flex-start',
+  },
+  VoyageContainer:{
+    flex: 1,
+    position: 'absolute',
+    width: width * 1.05,
+    height: height * 0.3,
+    bottom: 0,
+    paddingLeft: 20,
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    borderWidth: .2,
+    borderRadius: 10,
+    borderColor: 'rgba(0,0,0, 0.8)',
+  },
+  topLineVoyage:{
+    width: width,
+    paddingTop: 30,
+    flexDirection: 'row',
+  },
+  botLineVoyage:{
+    width: width,
+    paddingTop: 30,
+    flexDirection: 'row',
+  },
+  arrivalTimesTopVoyage:{
+    width: width * 0.7,
+    fontSize: 20,
+    paddingLeft: 20,
+  },
+  arrivalTimeBotVoyage:{
+    width: width * 0.7,
+    fontSize: 20,
+    paddingLeft: 20,
   },
 });
