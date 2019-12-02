@@ -376,8 +376,8 @@ export default function HomeScreen() {
                       <Text style = {styles.stationName}>
                         {destination.station}
                       </Text>
-                      {destination.isDouble? <TouchableOpacity onPress={() => switchLines()}><Image source={require('../assets/images/switch.png')} style={{marginTop: height * 0.002}}></Image></TouchableOpacity>:null}
-                      <Image source={images[destination.rect_image]}></Image>
+                      {destination.isDouble? <TouchableOpacity onPress={() => switchLines()}><Image source={require('../assets/images/switch.png')} style={{flex: 1,resizeMode: 'contain',marginTop: height * 0.002}}></Image></TouchableOpacity>:null}
+                      <Image source={images[destination.rect_image]} style={{flex: 1,resizeMode: 'contain'}}></Image>
                       <Ionicons
                         name={'md-close'}
                         size={responsiveWidth(9)}
@@ -537,6 +537,8 @@ const styles = StyleSheet.create({
     paddingRight: width* 0.03,
   },
   markersStyle:{
+    flex: 1,
+    resizeMode: 'contain',
     width: width * 0.15,
     height: height * 0.08,
   },
@@ -572,17 +574,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   descText:{
-    paddingTop: height * 0.01,
     flexDirection: 'row',
   },
   topLine:{
     paddingTop: height * 0.01,
-    height: height * 0.06,
     flexDirection: 'row',
   },
   botLine:{
     paddingTop: height * 0.01,
-    height: height * 0.06,
     flexDirection: 'row',
   },
   arrivalTimesTop:{
