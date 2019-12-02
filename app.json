@@ -29,6 +29,7 @@
     "android": {
       "package": "com.ist.skrrtthemrails",
       "versionCode": 1.0,
+      "icon":"./assets/images/icon.png",
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -60,6 +61,10 @@
         "googleMaps": {
           "apiKey": "AIzaSyCwpUINsgsX9eAdPdboKImlHfsv3L88ArU"
         }
+      },
+      "splash": {
+        "image":"./assets/images/icon.png",
+        "backgroundColor":"#ffffff"
       }
     }
   }

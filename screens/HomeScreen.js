@@ -15,6 +15,11 @@ import {
   FlatList
 } from 'react-native';
 
+import {
+  responsiveFontSize,
+  responsiveWidth
+} from "react-native-responsive-dimensions";
+
 import { MonoText } from '../components/StyledText';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import MapView, {Marker} from 'react-native-maps';
@@ -125,7 +130,7 @@ export default function HomeScreen() {
     selectedInput == 'destination' ? setTypingDestination(title): setTypingOrigin(title)
   }
   function onSearchPress(){
-    if (all_stations.includes(typingOrigin) && all_stations.includes(typingDestination)){
+    if (all_stations.includes(typingOrigin) && all_stations.includes(typingDestination) && (typingOrigin != typingDestination)){
       setIsVisible({isStationSelected: false, isInputSelected: false, isVoyageSelected:true})
       locations.map((location,idx) => {
         const { station } = location
@@ -249,37 +254,37 @@ export default function HomeScreen() {
                                       <View style={{flexDirection:"row"}}>
                                         <Ionicons
                                             name={'ios-arrow-back'}
-                                            size={30}
+                                            size={responsiveWidth(8)}
                                             color={'black'}
-                                            style={{width: width * 0.06, marginTop: 75,paddingLeft: 10}}
+                                            style={{width: width * 0.06, marginTop: height * 0.08,paddingLeft: width * 0.02}}
                                             onPress={() => onArrowBackPress()}
                                         />
                                         <Ionicons
                                             name={'md-radio-button-off'}
-                                            size={15}
+                                            size={responsiveWidth(4)}
                                             color={'black'}
-                                            style={{width: width * 0.06, marginTop: 83, paddingLeft: 10}}
+                                            style={{width: width * 0.06, marginTop: height * 0.09,paddingLeft: width * 0.02}}
                                         />
                                         <Ionicons
                                           name={'md-search'}
-                                          size={30}
+                                          size={responsiveWidth(8)}
                                           color={'white'}
-                                          style={{width: width * 0.08, marginTop: 110, paddingLeft: 3, left: width * 0.75, alignItems:'center', backgroundColor:'white', borderWidth: 0.5,borderRadius: 100, borderColor: 'green',backgroundColor:'green'}}
+                                          style={{width: width * 0.08, marginTop: height * 0.12, marginLeft: width * 0.75, paddingLeft: width * 0.01, alignItems:'center', backgroundColor:'white', borderWidth: 0.5,borderRadius: 100, borderColor: 'green',backgroundColor:'green'}}
                                           onPress={() => onSearchPress()}
                                         />
                                       </View>
                                       <Ionicons
                                             name={'md-radio-button-on'}
-                                            size={15}
+                                            size={responsiveWidth(4)}
                                             color={'black'}
-                                            style={{width: width * 1, marginTop: 20,paddingLeft:35}}
+                                            style={{width: width * 1, marginTop: height * 0.015,paddingLeft: width * 0.08}}
                                         />
                                       <View style={styles.SearchOriginContainer}>
                                         <Ionicons
                                           name={'md-search'}
-                                          size={30}
+                                          size={responsiveWidth(8)}
                                           color={'lightgrey'}
-                                          style={{width: width * 0.06, paddingLeft: 5}}
+                                          style={{width: width * 0.1}}
                                         />
                                         <TextInput placeholder='Origem' style={styles.SearchDestinationInput} value={typingOrigin} onTouchStart={() => onInputPressOrigin()} onChangeText={typingOrigin => onTextChangeOrigin(typingOrigin)}>
                                         </TextInput>
@@ -287,16 +292,16 @@ export default function HomeScreen() {
                                       <View style={styles.SearchDestinationContainer}>
                                         <Ionicons
                                           name={'md-search'}
-                                          size={30}
+                                          size={responsiveWidth(8)}
                                           color={'lightgrey'}
-                                          style={{width: width * 0.06, paddingLeft: 5}}
+                                          style={{width: width * 0.1}}
                                         />
                                         <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
                                         </TextInput>
                                       </View>
                                     </View>
                                     <View style={styles.botContainer}>
-                                      <Text style={{width: width, paddingTop:10, fontSize: 25, fontWeight: "bold",textAlign: 'center'}}>
+                                      <Text style={{width: width, paddingTop:height * 0.05, fontSize: responsiveFontSize(2.5), fontWeight: "bold",textAlign: 'center'}}>
                                         Estações
                                       </Text>
                                       <SafeAreaView style={{marginTop: Constants.statusBarHeight}}>
@@ -318,7 +323,7 @@ export default function HomeScreen() {
           name={'md-search'}
           size={30}
           color={'lightgrey'}
-          style={{width: width * 0.06, paddingLeft: 5}}
+          style={{width: width * 0.1}}
         />
         <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
         </TextInput>
@@ -326,9 +331,9 @@ export default function HomeScreen() {
       {isVisible.isVoyageSelected? <View>
                                     
                                     <View style={styles.VoyageContainer}>
-                                      <View style={{width: width, height: 40,flexDirection: 'row', justifyContent:"space-between"}}>
-                                        <Text style={{width: width *0.4,fontSize: 20,fontWeight:'bold'}}>Viagem</Text>
-                                        <Text style={{width: width *0.5,fontSize: 20,fontWeight:'bold'}}>Tempo de chegada</Text>
+                                      <View style={{width: width, height: height * 0.1,flexDirection: 'row', justifyContent:"space-between"}}>
+                                        <Text style={{width: width *0.4,fontSize: responsiveFontSize(2.5),fontWeight:'bold'}}>Viagem</Text>
+                                        <Text style={{width: width *0.5,fontSize: responsiveFontSize(2.5),fontWeight:'bold'}}>Tempo de chegada</Text>
                                         <Ionicons
                                           name={'md-close'}
                                           size={35}
@@ -337,29 +342,29 @@ export default function HomeScreen() {
                                         />
                                       </View>
                                       <View style={styles.topLineVoyage}>
-                                        <Text style={{width: width * 0.3,fontSize: 20}}>{voyageOrigin.station}</Text>
+                                        <Text style={{width: width * 0.3,fontSize: responsiveFontSize(2.5)}}>{voyageOrigin.station}</Text>
                                         <Text style = {styles.arrivalTimesTopVoyage}>
                                           {Math.floor(voyageOrigin.arrival_times_top.first)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                           {' '}{' '}{' '}{' '}{' '}{' '}
                                           {Math.floor(voyageOrigin.arrival_times_top.second)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                           {' '}{' '}{' '}{' '}{' '}{' '}
                                           {Math.floor(voyageOrigin.arrival_times_top.third)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                         </Text>
                                       </View>
                                       <View style={styles.botLineVoyage}>
-                                        <Text style={{width:width * 0.3,fontSize: 20,}}>{voyageDestination.station}</Text>
+                                        <Text style={{width:width * 0.3,fontSize: responsiveFontSize(2.5),}}>{voyageDestination.station}</Text>
                                         <Text style = {styles.arrivalTimeBotVoyage}>
                                           {Math.floor(voyageOrigin.arrival_times_top.first + voyageDestination.arrival_times_bot.first)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                           {' '}{' '}{' '}{' '}{' '}{' '}
                                           {Math.floor(voyageOrigin.arrival_times_top.second + voyageDestination.arrival_times_bot.second)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                           {' '}{' '}{' '}{' '}{' '}{' '}
                                           {Math.floor(voyageOrigin.arrival_times_top.third + voyageDestination.arrival_times_bot.third)}
-                                          <Text style = {{fontSize:15}}>min</Text>
+                                          <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                                         </Text>
                                       </View>
                                     </View>
@@ -371,19 +376,19 @@ export default function HomeScreen() {
                       <Text style = {styles.stationName}>
                         {destination.station}
                       </Text>
-                      {destination.isDouble? <TouchableOpacity onPress={() => switchLines()}><Image source={require('../assets/images/switch.png')} style={{marginTop:3}}></Image></TouchableOpacity>:null}
+                      {destination.isDouble? <TouchableOpacity onPress={() => switchLines()}><Image source={require('../assets/images/switch.png')} style={{marginTop: height * 0.002}}></Image></TouchableOpacity>:null}
                       <Image source={images[destination.rect_image]}></Image>
                       <Ionicons
                         name={'md-close'}
-                        size={35}
+                        size={responsiveWidth(9)}
                         style={styles.closeStyle}
                         onPress={() => onClosePress()}
                       />
                     </View>
                     <View style={styles.descText}>
-                      <Text style = {{width: width * 0.3,fontSize:20, fontWeight:"bold", alignSelf:'flex-start'}}>Sentido:
+                      <Text style = {{width: width * 0.3,fontSize:responsiveFontSize(2.5), fontWeight:"bold", alignSelf:'flex-start'}}>Sentido:
                       </Text>
-                      <Text style = {{width: width * 0.5,fontSize:20, fontWeight:"bold", alignSelf:'flex-start'}}>Tempos de chegada:
+                      <Text style = {{width: width * 0.6,fontSize:responsiveFontSize(2.5), fontWeight:"bold", alignSelf:'flex-start'}}>Tempos de chegada:
                       </Text>
                     </View>
                     <View style = {styles.topLine}>
@@ -392,13 +397,13 @@ export default function HomeScreen() {
                       </Text>
                       <Text style = {styles.arrivalTimesTop}>
                         {destination.arrival_times_top.first}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_top.second}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_top.third}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                       </Text>
                     </View>
                     <View style = {styles.botLine}>
@@ -407,13 +412,13 @@ export default function HomeScreen() {
                       </Text> 
                       <Text style = {styles.arrivalTimeBot}>
                         {destination.arrival_times_bot.first}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_bot.second}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                         {' '}{' '}{' '}{' '}{' '}{' '}
                         {destination.arrival_times_bot.third}
-                        <Text style = {{fontSize:15}}>min</Text>
+                        <Text style = {{fontSize:responsiveFontSize(2)}}>min</Text>
                       </Text>
                     </View>   
                 </View>:null}
@@ -472,8 +477,8 @@ const styles = StyleSheet.create({
   },
   SearchOriginContainer:{
     width: width * 0.7,
-    height: 60,
-    top: 60,
+    height: height * 0.06,
+    marginTop: height * 0.07,
     alignSelf: 'center',
     alignItems: 'center',
     position: "absolute",
@@ -482,12 +487,12 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0, 0.8)',
     backgroundColor: "white",
     flexDirection: "row",
-    paddingLeft: 10,
+    paddingLeft: width * 0.02,
   },
   SearchDestinationContainer:{
     width: width * 0.7,
-    height: 60,
-    top: 140 ,
+    height: height * 0.06,
+    marginTop:  height * 0.16,
     alignSelf: 'center',
     alignItems: 'center',
     position: "absolute",
@@ -496,7 +501,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0, 0.8)',
     backgroundColor: "white",
     flexDirection: "row",
-    paddingLeft: 10,
+    paddingLeft: width * 0.02,
   },
   wholePageContainer:{
     flex:1,
@@ -507,33 +512,33 @@ const styles = StyleSheet.create({
   },
   topContainer:{
     width: width,
-    height: height * 0.3,
+    height: height * 0.25,
     backgroundColor: 'white',
   },
   botContainer:{
     width: width,
     height: height * 0.65,
-    marginTop: 15,
+    marginTop: height * 0.02,
     backgroundColor: 'white',
   },
   item: {
-    padding: 20,
+    padding: width * 0.03,
     borderWidth: .2,
     backgroundColor: 'white',
   },
   title: {
-    fontSize: 32,
+    fontSize: responsiveFontSize(3),
   },
   SearchDestinationInput:{
     width: width* 0.5,
-    height: 60,
+    height: height * 0.1,
     textAlign: 'center',
-    fontSize: 22,
-    paddingLeft: 25,
+    fontSize: responsiveFontSize(2.7),
+    paddingRight: width* 0.03,
   },
   markersStyle:{
-    width: 50,
-    height: 50,
+    width: width * 0.15,
+    height: height * 0.08,
   },
   stationView:{
     flex: 1,
@@ -541,55 +546,55 @@ const styles = StyleSheet.create({
     width: width * 1.05,
     height: height * 0.3,
     bottom: 0,
-    paddingLeft: 20,
+    paddingLeft: width* 0.05,
     backgroundColor: 'white',
     alignSelf: 'center',
-    borderWidth: .2,
-    borderRadius: 10,
+    borderWidth: 0.1,
+    borderRadius: 2,
     borderColor: 'rgba(0,0,0, 0.8)',
   },
   stationName:{
-    fontSize: 25,
-    width: width * 0.45,
+    fontSize: responsiveFontSize(3),
+    width: width * 0.4,
     fontWeight:"bold",
   },
   closeStyle:{
     width: width * 0.1,
   },
   endStationTop:{
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
     width: width * 0.3,
     alignSelf: 'flex-start',
   },
   endStationBot:{
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
     width: width * 0.3,
     alignSelf: 'flex-start',
   },
   descText:{
-    paddingTop:30,
+    paddingTop: height * 0.01,
     flexDirection: 'row',
   },
   topLine:{
-    paddingTop: 20,
-    height: 40,
+    paddingTop: height * 0.01,
+    height: height * 0.06,
     flexDirection: 'row',
   },
   botLine:{
-    paddingTop: 30,
-    height: 40,
+    paddingTop: height * 0.01,
+    height: height * 0.06,
     flexDirection: 'row',
   },
   arrivalTimesTop:{
     width: width * 0.7,
-    fontSize: 20,
-    paddingLeft: 10,
+    fontSize: responsiveFontSize(2.5),
+    paddingLeft: width * 0.05,
     alignSelf: 'flex-start',
   },
   arrivalTimeBot:{
     width: width * 0.7,
-    fontSize: 20,
-    paddingLeft: 10,
+    fontSize: responsiveFontSize(2.5),
+    paddingLeft: width * 0.05,
     alignSelf: 'flex-start',
   },
   VoyageContainer:{
@@ -598,7 +603,7 @@ const styles = StyleSheet.create({
     width: width * 1.05,
     height: height * 0.3,
     bottom: 0,
-    paddingLeft: 20,
+    paddingLeft: width * 0.05,
     backgroundColor: 'white',
     alignSelf: 'center',
     borderWidth: .2,
@@ -607,22 +612,22 @@ const styles = StyleSheet.create({
   },
   topLineVoyage:{
     width: width,
-    paddingTop: 30,
+    paddingTop: height * 0.005,
     flexDirection: 'row',
   },
   botLineVoyage:{
     width: width,
-    paddingTop: 30,
+    paddingTop: height * 0.02,
     flexDirection: 'row',
   },
   arrivalTimesTopVoyage:{
     width: width * 0.7,
-    fontSize: 20,
-    paddingLeft: 20,
+    fontSize: responsiveFontSize(2.5),
+    paddingLeft: width * 0.1,
   },
   arrivalTimeBotVoyage:{
     width: width * 0.7,
-    fontSize: 20,
-    paddingLeft: 20,
+    fontSize: responsiveFontSize(2.5),
+    paddingLeft: width * 0.1,
   },
 });
