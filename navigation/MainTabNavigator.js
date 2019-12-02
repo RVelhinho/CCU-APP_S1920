@@ -1,25 +1,27 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator} from 'react-navigation-stack';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import ValidationScreen from '../screens/ValidationScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-const PositionStack = createStackNavigator(
+const HomeStack = createStackNavigator(
   {
-    Position: HomeScreen,
+    Home: HomeScreen,
+    Validation: ValidationScreen,
   },
-  config
+  {
+    initalRouteName: 'Home',
+  }
 );
 
-PositionStack.navigationOptions = {
+/*HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -32,7 +34,7 @@ PositionStack.navigationOptions = {
   ),
 };
 
-PositionStack.path = '';
+HomeStack.path = '';
 
 const SensorStack = createStackNavigator(
   {
@@ -73,6 +75,6 @@ const tabNavigator = createBottomTabNavigator({
   tabBarOptions: {showLabel: false}
 });
 
-tabNavigator.path = '';
+tabNavigator.path = '';*/
 
-export default tabNavigator;
+export default HomeStack;

@@ -1,6 +1,173 @@
 [
     {
+      "station": "Odivelas",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.793208, 
+        "longitude": -9.173410
+      }
+    },
+    {
+      "station": "Senhor Roubado",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.785734,
+        "longitude": -9.172139
+      }
+    },
+    {
+      "station": "Ameixoeira",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.779668, 
+        "longitude": -9.159777
+      }
+    },
+    {
+      "station": "Lumiar",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.772720, 
+        "longitude": -9.159687
+      }
+    },
+    {
+      "station": "Quinta das Conchas",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.767027,
+        "longitude": -9.155355
+      }
+    },
+    {
+      "station": "Campo Grande",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : true,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+        "end_station_top_extra" : "Telheiras",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "Cais do Sodré",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+      "coords": {
+        "latitude": 38.760211,
+        "longitude": -9.157843
+      }
+    },
+    {
+      "station": "Cidade Universitária",
+      "line" : "yellow",
+      "rect_image": "yellow_rect",
+      "isDouble" : false,
+      "end_station_top" : "Odivelas",
+      "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+      "end_station_bot" : "Rato",
+      "arrival_times_bot": {
+        "first": 4.2,
+        "second": 7.5,
+        "third" : 12.2
+        },
+      "coords": {
+        "latitude": 38.751777,
+        "longitude": -9.159024
+      }
+    },
+    {
       "station": "Entrecampos",
+      "line" : "yellow",
       "rect_image": "yellow_rect",
       "isDouble" : false,
       "end_station_top" : "Odivelas",
@@ -16,12 +183,13 @@
         "third" : 12.2
         },
       "coords": {
-        "latitude": 38.747033,
-        "longitude": -9.148014
+        "latitude": 38.746985, 
+        "longitude": -9.148019
       }
     },
     {
         "station": "Campo Pequeno",
+        "line" : "yellow",
         "isDouble" : false,
         "rect_image": "yellow_rect",
         "end_station_top" : "Odivelas",
@@ -43,6 +211,7 @@
       },
       {
         "station": "Saldanha",
+        "line" : "yellow",
         "isDouble" : true,
         "rect_image": "yellow_red_rect",
         "end_station_top" : "Odivelas",
@@ -70,12 +239,213 @@
         "third_extra" : 7.2
         },
         "coords": {
-          "latitude": 38.735426,
-          "longitude": -9.145335
+          "latitude": 38.735396, 
+          "longitude": -9.145240
+        }
+      },
+      {
+        "station": "Picoas",
+        "line" : "yellow",
+        "isDouble" : false,
+        "rect_image": "yellow_rect",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 7.4,
+          "third" : 9.2
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": 2.5,
+        "second": 6.4,
+        "third" : 8.4
+        },
+        "coords": {
+          "latitude": 38.730813,
+          "longitude": -9.146688
+        }
+      },
+      {
+        "station": "Marquês de Pombal",
+        "line" : "yellow",
+        "isDouble" : true,
+        "rect_image": "yellow_rect",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 7.4,
+          "third" : 9.2
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": 2.5,
+        "second": 6.4,
+        "third" : 8.4
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+        "coords": {
+          "latitude": 38.725263,
+          "longitude":-9.150059
+        }
+      },
+      {
+        "station": "Rato",
+        "line" : "yellow",
+        "isDouble" : false,
+        "rect_image": "yellow_rect",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 7.4,
+          "third" : 9.2
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": 2.5,
+        "second": 6.4,
+        "third" : 8.4
+        },
+        "coords": {
+          "latitude": 38.720126,
+          "longitude": -9.154051
+        }
+      },
+      {
+        "station": "Telheiras",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.760344, 
+          "longitude": -9.166063
+        }
+      },
+      {
+        "station": "Campo Grande",
+        "line" : "green",
+        "rect_image": "yellow_rect",
+        "isDouble" : true,
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+            "first": 0,
+            "second": 0,
+            "third" : 0
+        },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+          "first": 4.2,
+          "second": 7.5,
+          "third" : 12.2
+          },
+          "end_station_top_extra" : "Telheiras",
+          "arrival_times_top_extra": {
+            "first_extra": 3.5,
+            "second_extra": 7.1,
+            "third_extra" : 10.4
+        },
+          "end_station_bot_extra" : "Cais do Sodré",
+          "arrival_times_bot_extra": {
+          "first_extra": 1.2,
+          "second_extra": 4.3,
+          "third_extra" : 7.2
+          },
+        "coords": {
+          "latitude": 38.760211,
+          "longitude": -9.157843
+        }
+      },
+      {
+        "station": "Alvalade",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.753089, 
+          "longitude": -9.143986
+        }
+      },
+      {
+        "station": "Roma",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 10.2,
+          "third" : 12.2
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 6.2,
+        "second": 10.2,
+        "third" : 12.5
+        },
+        "coords": {
+          "latitude": 38.748619,
+          "longitude": -9.141581
+        }
+      },
+      {
+        "station": "Areeiro",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.742598,
+          "longitude": -9.133808
         }
       },
       {
         "station": "Alameda",
+        "line" : "green",
         "isDouble" : true,
         "rect_image": "green_red_rect",
         "end_station_top" : "Telheiras",
@@ -108,7 +478,8 @@
         }
       },
       {
-        "station": "Areeiro",
+        "station": "Anjos",
+        "line" : "green",
         "isDouble" : false,
         "rect_image": "green_rect",
         "end_station_top" : "Telheiras",
@@ -124,29 +495,840 @@
         "third" : 10.2
         },
         "coords": {
-          "latitude": 38.742598,
-          "longitude": -9.133808
+          "latitude": 38.726318,
+          "longitude": -9.134917
         }
       },
       {
-        "station": "Roma",
+        "station": "Intendente",
+        "line" : "green",
         "isDouble" : false,
         "rect_image": "green_rect",
         "end_station_top" : "Telheiras",
         "arrival_times_top": {
-          "first": 5.2,
-          "second": 10.2,
-          "third" : 12.2
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
       },
         "end_station_bot" : "Cais do Sodré",
         "arrival_times_bot": {
-        "first": 6.2,
-        "second": 10.2,
-        "third" : 12.5
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
         },
         "coords": {
-          "latitude": 38.748619,
-          "longitude": -9.141581
+          "latitude": 38.722261, 
+          "longitude": -9.135311
+        }
+      },
+      {
+        "station": "Martim Moniz",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.716238,
+          "longitude": -9.136203
+        }
+      },
+      {
+        "station": "Rossio",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.713994,
+          "longitude": -9.138457
+        }
+      },
+      {
+        "station": "Baixa-Chiado",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 5.3,
+          "second_extra": 9.2,
+          "third_extra" : 12.3
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 3.5,
+        "second_extra": 6.2,
+        "third_extra" : 9.5
+        },
+        "coords": {
+          "latitude": 38.710718,
+          "longitude": -9.139318
+        }
+      },
+      {
+        "station": "Cais do Sodré",
+        "line" : "green",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 0,
+        "second": 0,
+        "third" : 0
+        },
+        "coords": {
+          "latitude": 38.706164,
+          "longitude": -9.145143
+        }
+      },
+      {
+        "station": "Aeroporto",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.769045, 
+          "longitude": -9.128462
+        }
+      },
+      {
+        "station": "Encarnação",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.775005, 
+          "longitude": -9.115493
+        }
+      },
+      {
+        "station": "Moscavide",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.774876,
+          "longitude": -9.102968
+        }
+      },
+      {
+        "station": "Oriente",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.767774,
+          "longitude": -9.099092
+        }
+      },
+      {
+        "station": "Cabo Ruivo",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.763255, 
+          "longitude": -9.104072
+        }
+      },
+      {
+        "station": "Olivais",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.760968, 
+          "longitude": -9.112112
+        }
+      },
+      {
+        "station": "Chelas",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.755493, 
+          "longitude": -9.113920
+        }
+      },
+      {
+        "station": "Bela Vista",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.747738, 
+          "longitude": -9.118568
+        }
+      },
+      {
+        "station": "Olaias",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.739659, 
+          "longitude": -9.123878
+        }
+      },
+      {
+        "station": "Alameda",
+        "line" : "red",
+        "isDouble" : true,
+        "rect_image": "green_red_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 2.3,
+          "second": 4.2,
+          "third" : 9.3
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.1,
+        "second": 8.2,
+        "third" : 12.5
+        },
+        "end_station_top_extra" : "Aeroporto",
+        "arrival_times_top_extra": {
+          "first_extra": 5.3,
+          "second_extra": 9.2,
+          "third_extra" : 12.3
+      },
+        "end_station_bot_extra" : "São Sebastião",
+        "arrival_times_bot_extra": {
+        "first_extra": 3.5,
+        "second_extra": 6.2,
+        "third_extra" : 9.5
+        },
+        "coords": {
+          "latitude": 38.737191,
+          "longitude": -9.133867
+        }
+      },
+      {
+        "station": "Saldanha",
+        "line" : "red",
+        "isDouble" : true,
+        "rect_image": "yellow_red_rect",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 7.4,
+          "third" : 9.2
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": 2.5,
+        "second": 6.4,
+        "third" : 8.4
+        },
+        "end_station_top_extra" : "Aeroporto",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "São Sebastião",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+        "coords": {
+          "latitude": 38.735396, 
+          "longitude": -9.145240
+        }
+      },
+      {
+        "station": "São Sebastião",
+        "line" : "red",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 0,
+        "second": 0,
+        "third" : 0
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+        "coords": {
+          "latitude": 38.734842, 
+          "longitude": -9.154229
+        }
+      },
+      {
+        "station": "Reboleira",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 0,
+          "second": 0,
+          "third" : 0
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.752200, 
+          "longitude": -9.224134
+        }
+      },
+      {
+        "station": "Amadora Este",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.758400, 
+          "longitude": -9.219108
+        }
+      },
+      {
+        "station": "Pontinha",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.762205, 
+          "longitude": -9.196854
+        }
+      },
+      {
+        "station": "Carnide",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.759147,
+          "longitude": -9.192712
+        }
+      },
+      {
+        "station": "Colégio Militar/Luz",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.753329, 
+          "longitude": -9.189169
+        }
+      },
+      {
+        "station": "Alto dos Moinhos",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.749577, 
+          "longitude": -9.179944
+        }
+      },
+      {
+        "station": "Laranjeiras",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.748521, 
+          "longitude": -9.172443
+        }
+      },
+      {
+        "station": "Jardim Zoológico",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.742071, 
+          "longitude": -9.168923
+        }
+      },
+      {
+        "station": "Praça de Espanha",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.737654, 
+          "longitude": -9.158430
+        }
+      },
+      {
+        "station": "São Sebastião",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "red_rect",
+        "end_station_top" : "Aeroporto",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "São Sebastião",
+        "arrival_times_bot": {
+        "first": 0,
+        "second": 0,
+        "third" : 0
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+        "coords": {
+          "latitude": 38.734842, 
+          "longitude": -9.154229
+        }
+      },
+      {
+        "station": "Parque",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.729672,  
+          "longitude": -9.150352
+        }
+      },
+      {
+        "station": "Marquês de Pombal",
+        "line" : "blue",
+        "isDouble" : true,
+        "rect_image": "yellow_rect",
+        "end_station_top" : "Odivelas",
+        "arrival_times_top": {
+          "first": 5.2,
+          "second": 7.4,
+          "third" : 9.2
+      },
+        "end_station_bot" : "Rato",
+        "arrival_times_bot": {
+        "first": 2.5,
+        "second": 6.4,
+        "third" : 8.4
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 3.5,
+          "second_extra": 7.1,
+          "third_extra" : 10.4
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 1.2,
+        "second_extra": 4.3,
+        "third_extra" : 7.2
+        },
+        "coords": {
+          "latitude": 38.725263,
+          "longitude":-9.150059
+        }
+      },
+      {
+        "station": "Avenida",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.720108, 
+          "longitude": -9.145825
+        }
+      },
+      {
+        "station": "Restauradores",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.715123, 
+          "longitude": -9.141642
+        }
+      },
+      {
+        "station": "Baixa-Chiado",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "green_rect",
+        "end_station_top" : "Telheiras",
+        "arrival_times_top": {
+          "first": 3.2,
+          "second": 5.1,
+          "third" : 7.4
+      },
+        "end_station_bot" : "Cais do Sodré",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "end_station_top_extra" : "Reboleira",
+        "arrival_times_top_extra": {
+          "first_extra": 5.3,
+          "second_extra": 9.2,
+          "third_extra" : 12.3
+      },
+        "end_station_bot_extra" : "Santa Apolónia",
+        "arrival_times_bot_extra": {
+        "first_extra": 3.5,
+        "second_extra": 6.2,
+        "third_extra" : 9.5
+        },
+        "coords": {
+          "latitude": 38.710718,
+          "longitude": -9.139318
+        }
+      },
+      {
+        "station": "Terreiro do Paço",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.707202,  
+          "longitude": -9.133354
+        }
+      },
+      {
+        "station": "Santa Apolónia",
+        "line" : "blue",
+        "isDouble" : false,
+        "rect_image": "blue_rect",
+        "end_station_top" : "Reboleira",
+        "arrival_times_top": {
+          "first": 3.1,
+          "second": 5.2,
+          "third" : 7.5
+      },
+        "end_station_bot" : "Santa Apolónia",
+        "arrival_times_bot": {
+        "first": 2.4,
+        "second": 7.1,
+        "third" : 10.2
+        },
+        "coords": {
+          "latitude": 38.714085, 
+          "longitude": -9.122371
         }
       }
   ]

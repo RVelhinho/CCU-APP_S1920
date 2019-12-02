@@ -22,15 +22,16 @@ import {
 
 import { MonoText } from '../components/StyledText';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Polyline} from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
 const locations_json = require('../locations.json');
 const all_stations = ['Alameda', 'Areeiro', 'Roma','Entrecampos', 'Campo Pequeno', 'Saldanha']
-const green_stations = ['Alameda', 'Areeiro', 'Roma'];
-const yellow_stations = ['Entrecampos', 'Campo Pequeno', 'Saldanha']
-const red_stations = ['Saldanha','Alameda']
+const green_stations = ['Telheiras','Campo Grande', 'Alvalade', 'Roma', 'Areeiro', 'Alameda', 'Anjos', 'Intendente', 'Martim Moniz', 'Rossio', 'Baixa-Chiado', 'Cais do Sodré','Alameda', 'Areeiro', 'Roma'];
+const yellow_stations = ['Odivelas','Senhor Roubado','Ameixoeira','Lumiar','Quinta das Conchas','Campo Grande','Cidade Universitária','Entrecampos', 'Campo Pequeno', 'Saldanha', 'Picoas', 'Marquês de Pombal', 'Rato']
+const red_stations = ['Aeroporto','Encarnação', 'Moscavide', 'Oriente', 'Cabo Ruivo', 'Olivais', 'Chelas', 'Bela Vista', 'Olaias', 'Alameda', 'Saldanha', 'São Sebastião']
+const blue_stations = ['Reboleira', 'Amadora Este', 'Alfamelos', 'Pontinha', 'Carnide', 'Colégio Militar/Luz', 'Alto dos Moinhos', 'Laranjeiras', 'Jardim Zoológico', 'Praça de Espanha', 'São Sebastião', 'Parque', 'Marquês de Pombal', 'Avenida', 'Restauradores', 'Baixa-Chiado', 'Terreiro do Paço', 'Santa Apolónia']
 const {width, height} = Dimensions.get('screen')
 
 const DATA = [
@@ -60,7 +61,9 @@ const DATA = [
   },
 ];
 
-export default function HomeScreen() {
+coordinates = [];
+
+export default function HomeScreen(props) {
   const [latitude, setlatitude] = React.useState(null);
   const [longitude, setlongitude] = React.useState(null);
   const [locations, setLocations] = React.useState(locations_json);
@@ -199,6 +202,26 @@ export default function HomeScreen() {
                 </Marker>
               )
             }
+            else if (yellow_stations.includes(station) && green_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/yellow_green.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            else if (yellow_stations.includes(station) && blue_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/yellow_blue.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
             else if (green_stations.includes(station) && red_stations.includes(station)){
               return(
                 <Marker key = {idx}
@@ -209,6 +232,28 @@ export default function HomeScreen() {
                 </Marker>
               )
             }
+            else if (green_stations.includes(station) && blue_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/green_blue.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+
+            else if (red_stations.includes(station) && blue_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/blue_red.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            
             else if (yellow_stations.includes(station)){
               return(
                 <Marker key = {idx}
@@ -228,9 +273,85 @@ export default function HomeScreen() {
                 </Marker>
               )
             }
+            else if (red_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/red.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
+            else if (blue_stations.includes(station)){
+              return(
+                <Marker key = {idx}
+                        coordinate = {{latitude, longitude}}
+                        size = {50}
+                        onPress = {() => onMarkerPress(location)}>
+                  <Image source = {require('../assets/images/blue.png')} style = {styles.markersStyle}/>       
+                </Marker>
+              )
+            }
           })
         }
       </View>
+    )
+  }
+  renderYellowPolylines = () =>{
+    coordinates = []
+    return(
+      locations.map((location,idx) => {
+        const {
+          coords : {latitude, longitude}
+        } = location
+        const {line} = location
+        if ( line == 'yellow'){
+          coordinates.push({latitude, longitude})
+        }
+      })
+    )
+  }
+  renderGreenPolylines = () =>{
+    coordinates = []
+    return(
+      locations.map((location,idx) => {
+        const {
+          coords : {latitude, longitude}
+        } = location
+        const {line} = location
+        if ( line == 'green'){
+          coordinates.push({latitude, longitude})
+        }
+      })
+    )
+  }
+  renderRedPolylines = () =>{
+    coordinates = []
+    return(
+      locations.map((location,idx) => {
+        const {
+          coords : {latitude, longitude}
+        } = location
+        const {line} = location
+        if ( line == 'red'){
+          coordinates.push({latitude, longitude})
+        }
+      })
+    )
+  }
+  renderBluePolylines = () =>{
+    coordinates = []
+    return(
+      locations.map((location,idx) => {
+        const {
+          coords : {latitude, longitude}
+        } = location
+        const {line} = location
+        if ( line == 'blue'){
+          coordinates.push({latitude, longitude})
+        }
+      })
     )
   }
   return (
@@ -248,6 +369,30 @@ export default function HomeScreen() {
                 zoomEnabled = {true}
                 onPress = {() => onMapPress()}>
           {renderStations()}
+          {renderYellowPolylines()}
+          <Polyline
+            coordinates={coordinates}
+            strokeColor="#ecbf33" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          {renderGreenPolylines()}
+          <Polyline
+            coordinates={coordinates}
+            strokeColor="#2a9138" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          {renderRedPolylines()}
+          <Polyline
+            coordinates={coordinates}
+            strokeColor="#a60008" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          {renderBluePolylines()}
+          <Polyline
+            coordinates={coordinates}
+            strokeColor="#1f26ab" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
       </MapView>
       {isVisible.isInputSelected? <View style={styles.wholePageContainer}>
                                     <View style={styles.topContainer}>
@@ -318,16 +463,43 @@ export default function HomeScreen() {
                                       </SafeAreaView>
                                     </View>
                                   </View>
-      :<View style={styles.SearchDestinationContainer}>
-        <Ionicons
-          name={'md-search'}
-          size={30}
-          color={'lightgrey'}
-          style={{width: width * 0.1}}
-        />
-        <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
-        </TextInput>
-      </View>}
+      :
+        <View style={styles.SearchDestinationContainer}>
+          <Ionicons
+            name={'md-search'}
+            size={30}
+            color={'lightgrey'}
+            style={{width: width * 0.1}}
+          />
+          <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={typingDestination} onTouchStart={() => onInputPressDestination()} onChangeText={typingDestination => onTextChangeDestination(typingDestination)}>
+          </TextInput>
+        </View>
+      }
+      <View style={{position: "absolute", backgroundColor: 'white', flexDirection:'row', width:width, height: height *0.08, borderColor: 'black', borderWidth: 0.2, bottom: 0}}>
+          <TouchableOpacity style={{width: width * 0.3, height: height * 0.08, alignItems:'flex-start', justifyContent:'center', paddingLeft: width * 0.05}}>
+            <Ionicons
+              name={'md-menu'}
+              size={responsiveWidth(10)}
+              color={'black'}>
+            </Ionicons>
+          </TouchableOpacity>
+          <TouchableOpacity style={{width: width * 0.3, height: height * 0.08, alignItems:'flex-end', justifyContent:'center', marginLeft: width * 0.33}}>
+            <Ionicons
+              name={'md-more'}
+              size={responsiveWidth(10)}
+              color={'black'}>
+            </Ionicons>
+          </TouchableOpacity>
+        </View>
+        <View style={{ position: "absolute", width: width, height: height * 0.08, alignItems:'center', bottom: 0, marginBottom: height * 0.045}}>
+          <TouchableOpacity onPress={ () => props.navigation.navigate('Validation')} style={{width: height * 0.09, height:height * 0.09, borderRadius: (height * 0.09)/2, backgroundColor: 'white', borderWidth: 0.2, alignItems:'center', justifyContent:'center'}}>
+            <Ionicons
+              name={'md-wifi'}
+              size={responsiveWidth(12)}
+              color={'black'}>
+            </Ionicons>
+          </TouchableOpacity>
+        </View>
       {isVisible.isVoyageSelected? <View>
                                     
                                     <View style={styles.VoyageContainer}>
@@ -498,7 +670,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderWidth: .2,
     borderRadius: 10,
-    borderColor: 'rgba(0,0,0, 0.8)',
+    borderColor: 'black',
     backgroundColor: "white",
     flexDirection: "row",
     paddingLeft: width * 0.02,
