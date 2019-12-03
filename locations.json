@@ -1,5 +1,6 @@
 [
     {
+      "color" : "yellow",
       "station": "Odivelas",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -22,6 +23,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Senhor Roubado",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -44,6 +46,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Ameixoeira",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -66,6 +69,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Lumiar",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -88,6 +92,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Quinta das Conchas",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -110,6 +115,7 @@
       }
     },
     {
+      "color" : "yellow_green",
       "station": "Campo Grande",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -144,6 +150,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Cidade Universitária",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -166,6 +173,7 @@
       }
     },
     {
+      "color" : "yellow",
       "station": "Entrecampos",
       "line" : "yellow",
       "rect_image": "yellow_rect",
@@ -188,7 +196,8 @@
       }
     },
     {
-        "station": "Campo Pequeno",
+      "color" : "yellow",  
+      "station": "Campo Pequeno",
         "line" : "yellow",
         "isDouble" : false,
         "rect_image": "yellow_rect",
@@ -210,6 +219,7 @@
         }
       },
       {
+        "color" : "yellow_red",
         "station": "Saldanha",
         "line" : "yellow",
         "isDouble" : true,
@@ -244,6 +254,7 @@
         }
       },
       {
+        "color" : "yellow",
         "station": "Picoas",
         "line" : "yellow",
         "isDouble" : false,
@@ -266,6 +277,7 @@
         }
       },
       {
+        "color" : "yellow_blue",
         "station": "Marquês de Pombal",
         "line" : "yellow",
         "isDouble" : true,
@@ -300,6 +312,7 @@
         }
       },
       {
+        "color" : "yellow",
         "station": "Rato",
         "line" : "yellow",
         "isDouble" : false,
@@ -322,6 +335,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Telheiras",
         "line" : "green",
         "isDouble" : false,
@@ -344,6 +358,7 @@
         }
       },
       {
+        "color" : "yellow_green",
         "station": "Campo Grande",
         "line" : "green",
         "rect_image": "yellow_rect",
@@ -378,6 +393,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Alvalade",
         "line" : "green",
         "isDouble" : false,
@@ -400,6 +416,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Roma",
         "line" : "green",
         "isDouble" : false,
@@ -422,6 +439,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Areeiro",
         "line" : "green",
         "isDouble" : false,
@@ -444,6 +462,7 @@
         }
       },
       {
+        "color" : "green_red",
         "station": "Alameda",
         "line" : "green",
         "isDouble" : true,
@@ -478,6 +497,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Anjos",
         "line" : "green",
         "isDouble" : false,
@@ -500,6 +520,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Intendente",
         "line" : "green",
         "isDouble" : false,
@@ -522,6 +543,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Martim Moniz",
         "line" : "green",
         "isDouble" : false,
@@ -544,6 +566,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Rossio",
         "line" : "green",
         "isDouble" : false,
@@ -566,6 +589,7 @@
         }
       },
       {
+        "color" : "green_blue",
         "station": "Baixa-Chiado",
         "line" : "green",
         "isDouble" : false,
@@ -600,6 +624,7 @@
         }
       },
       {
+        "color" : "green",
         "station": "Cais do Sodré",
         "line" : "green",
         "isDouble" : false,
@@ -622,6 +647,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Aeroporto",
         "line" : "red",
         "isDouble" : false,
@@ -644,6 +670,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Encarnação",
         "line" : "red",
         "isDouble" : false,
@@ -666,6 +693,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Moscavide",
         "line" : "red",
         "isDouble" : false,
@@ -688,6 +716,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Oriente",
         "line" : "red",
         "isDouble" : false,
@@ -710,6 +739,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Cabo Ruivo",
         "line" : "red",
         "isDouble" : false,
@@ -732,6 +762,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Olivais",
         "line" : "red",
         "isDouble" : false,
@@ -754,6 +785,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Chelas",
         "line" : "red",
         "isDouble" : false,
@@ -776,6 +808,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Bela Vista",
         "line" : "red",
         "isDouble" : false,
@@ -798,6 +831,7 @@
         }
       },
       {
+        "color" : "red",
         "station": "Olaias",
         "line" : "red",
         "isDouble" : false,
@@ -820,6 +854,7 @@
         }
       },
       {
+        "color" : "green_red",
         "station": "Alameda",
         "line" : "red",
         "isDouble" : true,
@@ -854,6 +889,7 @@
         }
       },
       {
+        "color" : "yellow_red",
         "station": "Saldanha",
         "line" : "red",
         "isDouble" : true,
@@ -888,6 +924,7 @@
         }
       },
       {
+        "color" : "blue_red",
         "station": "São Sebastião",
         "line" : "red",
         "isDouble" : false,
@@ -922,6 +959,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Reboleira",
         "line" : "blue",
         "isDouble" : false,
@@ -944,6 +982,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Amadora Este",
         "line" : "blue",
         "isDouble" : false,
@@ -966,6 +1005,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Pontinha",
         "line" : "blue",
         "isDouble" : false,
@@ -988,6 +1028,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Carnide",
         "line" : "blue",
         "isDouble" : false,
@@ -1010,6 +1051,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Colégio Militar/Luz",
         "line" : "blue",
         "isDouble" : false,
@@ -1032,6 +1074,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Alto dos Moinhos",
         "line" : "blue",
         "isDouble" : false,
@@ -1054,6 +1097,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Laranjeiras",
         "line" : "blue",
         "isDouble" : false,
@@ -1076,6 +1120,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Jardim Zoológico",
         "line" : "blue",
         "isDouble" : false,
@@ -1098,6 +1143,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Praça de Espanha",
         "line" : "blue",
         "isDouble" : false,
@@ -1120,6 +1166,7 @@
         }
       },
       {
+        "color" : "blue_red",
         "station": "São Sebastião",
         "line" : "blue",
         "isDouble" : false,
@@ -1154,6 +1201,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Parque",
         "line" : "blue",
         "isDouble" : false,
@@ -1176,6 +1224,7 @@
         }
       },
       {
+        "color" : "yellow_blue",
         "station": "Marquês de Pombal",
         "line" : "blue",
         "isDouble" : true,
@@ -1210,6 +1259,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Avenida",
         "line" : "blue",
         "isDouble" : false,
@@ -1232,6 +1282,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Restauradores",
         "line" : "blue",
         "isDouble" : false,
@@ -1254,6 +1305,7 @@
         }
       },
       {
+        "color" : "green_blue",
         "station": "Baixa-Chiado",
         "line" : "blue",
         "isDouble" : false,
@@ -1288,6 +1340,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Terreiro do Paço",
         "line" : "blue",
         "isDouble" : false,
@@ -1310,6 +1363,7 @@
         }
       },
       {
+        "color" : "blue",
         "station": "Santa Apolónia",
         "line" : "blue",
         "isDouble" : false,

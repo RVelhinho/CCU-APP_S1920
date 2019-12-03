@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import images from '../assets/images/index.js';
+import * as Location from 'expo-location';
 import {
   Image,
   Platform,
@@ -61,12 +62,10 @@ const DATA = [
   },
 ];
 
-coordinates = [];
 
 export default function HomeScreen(props) {
   const [latitude, setlatitude] = React.useState(null);
   const [longitude, setlongitude] = React.useState(null);
-  const [locations, setLocations] = React.useState(locations_json);
   const [destination, setDestination] = React.useState(null);
   const [voyageOrigin, setVoyageOrigin] = React.useState(null);
   const [voyageDestination, setVoyageDestination] = React.useState(null);
@@ -75,6 +74,7 @@ export default function HomeScreen(props) {
   const [typingDestination, setTypingDestination] = React.useState('');
   const [data, setData] = React.useState(DATA)
   const [selectedInput, setSelecedInput] = React.useState('')
+
   React.useEffect(async () =>{
     const {status} = await Permissions.getAsync(Permissions.LOCATION)
     if ( status != 'granted'){
@@ -135,7 +135,7 @@ export default function HomeScreen(props) {
   function onSearchPress(){
     if (all_stations.includes(typingOrigin) && all_stations.includes(typingDestination) && (typingOrigin != typingDestination)){
       setIsVisible({isStationSelected: false, isInputSelected: false, isVoyageSelected:true})
-      locations.map((location,idx) => {
+      locations_json.map((location,idx) => {
         const { station } = location
         if ( station == typingOrigin){
           setVoyageOrigin(location)
@@ -187,7 +187,7 @@ export default function HomeScreen(props) {
     return(
       <View>
         {
-          locations.map((location,idx) => {
+          locations_json.map((location,idx) => {
             const {
               coords : {latitude, longitude}
             } = location
@@ -298,61 +298,55 @@ export default function HomeScreen(props) {
       </View>
     )
   }
-  renderYellowPolylines = () =>{
-    coordinates = []
+  renderPolylines = () =>{
+    coordinates_yellow = []
+    coordinates_blue = []
+    coordinates_green = []
+    coordinates_red = []
     return(
-      locations.map((location,idx) => {
-        const {
-          coords : {latitude, longitude}
-        } = location
-        const {line} = location
-        if ( line == 'yellow'){
-          coordinates.push({latitude, longitude})
+      <View>
+        {
+          locations_json.map((location,idx) => {
+            const {
+              coords : {latitude, longitude}
+            } = location
+            const {line} = location
+            if ( line == 'yellow'){
+              coordinates_yellow.push({latitude, longitude})
+            }
+            else if ( line == 'blue'){
+              coordinates_blue.push({latitude, longitude})
+            }
+            else if ( line == 'red'){
+              coordinates_red.push({latitude, longitude})
+            }
+            else{
+              coordinates_green.push({latitude, longitude})
+            }
+          })
         }
-      })
-    )
-  }
-  renderGreenPolylines = () =>{
-    coordinates = []
-    return(
-      locations.map((location,idx) => {
-        const {
-          coords : {latitude, longitude}
-        } = location
-        const {line} = location
-        if ( line == 'green'){
-          coordinates.push({latitude, longitude})
-        }
-      })
-    )
-  }
-  renderRedPolylines = () =>{
-    coordinates = []
-    return(
-      locations.map((location,idx) => {
-        const {
-          coords : {latitude, longitude}
-        } = location
-        const {line} = location
-        if ( line == 'red'){
-          coordinates.push({latitude, longitude})
-        }
-      })
-    )
-  }
-  renderBluePolylines = () =>{
-    coordinates = []
-    return(
-      locations.map((location,idx) => {
-        const {
-          coords : {latitude, longitude}
-        } = location
-        const {line} = location
-        if ( line == 'blue'){
-          coordinates.push({latitude, longitude})
-        }
-      })
-    )
+        <Polyline
+            coordinates={coordinates_yellow}
+            strokeColor="#ecbf33" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          <Polyline
+            coordinates={coordinates_green}
+            strokeColor="#2a9138" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          <Polyline
+            coordinates={coordinates_red}
+            strokeColor="#a60008" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+          <Polyline
+            coordinates={coordinates_blue}
+            strokeColor="#1f26ab" // fallback for when `strokeColors` is not supported by the map-provider
+            strokeWidth={6}
+          />
+      </View>
+      )
   }
   return (
     <View style={styles.container}>
@@ -369,30 +363,7 @@ export default function HomeScreen(props) {
                 zoomEnabled = {true}
                 onPress = {() => onMapPress()}>
           {renderStations()}
-          {renderYellowPolylines()}
-          <Polyline
-            coordinates={coordinates}
-            strokeColor="#ecbf33" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeWidth={6}
-          />
-          {renderGreenPolylines()}
-          <Polyline
-            coordinates={coordinates}
-            strokeColor="#2a9138" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeWidth={6}
-          />
-          {renderRedPolylines()}
-          <Polyline
-            coordinates={coordinates}
-            strokeColor="#a60008" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeWidth={6}
-          />
-          {renderBluePolylines()}
-          <Polyline
-            coordinates={coordinates}
-            strokeColor="#1f26ab" // fallback for when `strokeColors` is not supported by the map-provider
-            strokeWidth={6}
-          />
+          {renderPolylines()}
       </MapView>
       {isVisible.isInputSelected? <View style={styles.wholePageContainer}>
                                     <View style={styles.topContainer}>
