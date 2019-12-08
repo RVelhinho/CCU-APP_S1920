@@ -28,8 +28,8 @@
     },
     "android": {
       "package": "com.ist.skrrtthemrails",
-      "versionCode": 1.0,
-      "icon":"./assets/images/icon.png",
+      "versionCode": 1,
+      "icon": "./assets/images/icon.png",
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -63,9 +63,10 @@
         }
       },
       "splash": {
-        "image":"./assets/images/icon.png",
-        "backgroundColor":"#ffffff"
+        "image": "./assets/images/icon.png",
+        "backgroundColor": "#ffffff"
       }
-    }
+    },
+    "description": ""
   }
 }
