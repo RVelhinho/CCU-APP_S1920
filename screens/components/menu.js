@@ -19,23 +19,24 @@ const { width, height } = Dimensions.get('screen')
 export default function Menu(props) {
     return(
         <View style={styles.profileView}>
-            <View style={{width: width, height: height * 0.1, flexDirection:'row'}}>
+            <View style={styles.profileWrapper}>
                 <Image source={require('../../assets/images/profile_picture.png')} style={{width: width * 0.2, height: height * 0.1,borderRadius: 50}}></Image>
-                <View style={{ width: width * 0.6, height: height * 0.1, alignItems:'flex-start', justifyContent:'center'}}>
-                    <Text style={{width: width * 0.3, fontSize: responsiveFontSize(2,5), fontWeight: 'bold'}}>Mike Lewis</Text>
-                    <Text style={{fontSize: responsiveFontSize(2)}}>mike_lewis98@gmail.com</Text>
+                <View style={styles.profileDescription}>
+                    <Text style={styles.profileName}>Mike Lewis</Text>
+                    <Text style={styles.profileSecondaryAttribute}>mike_lewis98@gmail.com</Text>
                 </View>
-                <View style={{width: width * 0.2,height: height * 0.1, alignItems:'center', justifyContent:'center'}}>
+                <View style={styles.closeIconWrapper}>
                     <Ionicons
                         name={'md-close'}
                         size={responsiveWidth(9)}
-                        onPress={props.onClosePressHandler}
+                        style={styles.closeStyle}
+                        onPress={props.onClosePress}
                     />
                 </View>
             </View>
-            <View style={{ width: width * 0.9, alignSelf:'flex-start',borderBottomColor: 'lightgrey', borderBottomWidth: 1, marginLeft: width * 0.02}}/>
-            <TouchableOpacity onPress={props.onNavigateHandler} style={{width: width, height: height * 0.07, flexDirection:'row'}}>
-                <View style={{width: width * 0.2, height: height * 0.07, justifyContent:'center'}}>
+            <View style={styles.hrLine}/>
+            <TouchableOpacity onPress={props.onNavigate} style={styles.optionWrapper}>
+                <View style={styles.optionIconWrapper}>
                     <Ionicons
                     name={'md-card'}
                     size={responsiveWidth(8)}
@@ -43,12 +44,12 @@ export default function Menu(props) {
                     style={{alignSelf:'center'}}>
                     </Ionicons>
                 </View>
-                <View style={{ width: width * 0.8, height: height * 0.07, justifyContent:'center'}}>
-                    <Text style={{fontSize: responsiveFontSize(2)}}>Viagens</Text>
+                <View style={styles.optionTextWrapper}>
+                    <Text style={styles.unblockedText}>Viagens</Text>
                 </View>
             </TouchableOpacity>
-            <View style={{width: width, height: height * 0.07, flexDirection:'row'}}>
-                <View style={{width: width * 0.2, height: height * 0.07, justifyContent:'center'}}>
+            <View style={styles.optionWrapper}>
+                <View style={styles.optionIconWrapper}>
                     <Ionicons
                     name={'md-document'}
                     size={responsiveWidth(8)}
@@ -56,12 +57,12 @@ export default function Menu(props) {
                     style={{alignSelf:'center'}}>
                     </Ionicons>
                 </View>
-                <View style={{ width: width * 0.8, height: height * 0.07, justifyContent:'center'}}>
-                    <Text style={{fontSize: responsiveFontSize(2), color:'lightgrey'}}>Documentos</Text>
+                <View style={styles.optionTextWrapper}>
+                    <Text style={styles.blockedText}>Documentos</Text>
                 </View>
             </View>
-            <View style={{width: width, height: height * 0.07, flexDirection:'row'}}>
-                <View style={{width: width * 0.2, height: height * 0.07, justifyContent:'center'}}>
+            <View style={styles.optionWrapper}>
+                <View style={styles.optionIconWrapper}>
                     <Ionicons
                     name={'md-pricetags'}
                     size={responsiveWidth(8)}
@@ -69,12 +70,12 @@ export default function Menu(props) {
                     style={{alignSelf:'center'}}>
                     </Ionicons>
                 </View>
-                <View style={{ width: width * 0.8, height: height * 0.07, justifyContent:'center'}}>
-                    <Text style={{fontSize: responsiveFontSize(2), color:'lightgrey'}}>Descontos</Text>
+                <View style={styles.optionTextWrapper}>
+                    <Text style={styles.blockedText}>Descontos</Text>
                 </View>
             </View>
-            <View style={{width: width, height: height * 0.07, flexDirection:'row'}}>
-                <View style={{width: width * 0.2, height: height * 0.07, justifyContent:'center'}}>
+            <View style={styles.optionWrapper}>
+                <View style={styles.optionIconWrapper}>
                     <Ionicons
                     name={'md-people'}
                     size={responsiveWidth(8)}
@@ -82,8 +83,8 @@ export default function Menu(props) {
                     style={{alignSelf:'center'}}>
                     </Ionicons>
                 </View>
-                <View style={{ width: width * 0.8, height: height * 0.07, justifyContent:'center'}}>
-                    <Text style={{fontSize: responsiveFontSize(2), color:'lightgrey'}}>Controlo Parental</Text>
+                <View style={styles.optionTextWrapper}>
+                    <Text style={styles.blockedText}>Controlo Parental</Text>
                 </View>
             </View>
         </View>
@@ -112,4 +113,60 @@ const styles = StyleSheet.create({
 
         elevation: 6,
     },
+    profileDescription:{
+        width: width * 0.6, 
+        height: height * 0.1, 
+        alignItems:'flex-start', 
+        justifyContent:'center'
+    },
+    profileName:{
+        width: width * 0.3, 
+        fontSize: responsiveFontSize(2,5), 
+        fontWeight: 'bold'
+    }, 
+    profileSecondaryAttribute:{
+        fontSize: responsiveFontSize(2)
+    },
+    hrLine:{
+        width: width * 0.9, 
+        alignSelf:'flex-start',
+        borderBottomColor: 'lightgrey', 
+        borderBottomWidth: 1, 
+        marginLeft: width * 0.02
+    },
+    closeIconWrapper:{
+        width: width * 0.2,
+        height: height * 0.1, 
+        alignItems:'center', 
+        justifyContent:'center'
+    },
+    closeStyle: {
+        width: width * 0.1,
+    },
+    profileWrapper:{
+        width: width, 
+        height: height * 0.1, 
+        flexDirection:'row'
+    },  
+    optionWrapper:{
+        width: width, 
+        height: height * 0.07, 
+        flexDirection:'row'
+    },
+    optionIconWrapper:{
+        width: width * 0.2, 
+        height: height * 0.07, 
+        justifyContent:'center'
+    },
+    optionTextWrapper:{
+        width: width * 0.8, 
+        height: height * 0.07, 
+        justifyContent:'center'
+    },
+    blockedText:{
+        fontSize: responsiveFontSize(2), color:'lightgrey'
+    },
+    unblockedText:{
+        fontSize: responsiveFontSize(2)
+    }
 })
