@@ -9,15 +9,15 @@ import { responsiveFontSize } from 'react-native-responsive-dimensions';
 export default function ValidationScreen(props) {
   return (
     <View style={styles.container}>
-      <View style={{flexDirection:'row'}}>
-        <TouchableOpacity  style={{width : width * 0.2, height: height * 0.08, alignItems:'flex-start', justifyContent:'center', paddingLeft: width * 0.06, paddingTop: height * 0.05}} onPress={ () => props.navigation.goBack()}>
-        <Ionicons
-          name={'md-close'}
-          size={35}
-          style={styles.closeStyle}
-        />
+      <View style={styles.firstRowWrapper}>
+        <TouchableOpacity  style={styles.closeIconWrapper} onPress={ () => props.navigation.goBack()}>
+          <Ionicons
+            name={'md-close'}
+            size={35}
+            style={styles.closeStyle}
+          />
         </TouchableOpacity>
-        <Text style={{fontSize:responsiveFontSize(4), width: width * 0.8, height: height * 0.1, alignItems:'center', justifyContent:'flex-end', paddingLeft:width * 0.08, paddingTop: height * 0.04}}>
+        <Text style={styles.firstRowTextWrapper}>
           Validar Titulo
         </Text>
       </View>
@@ -59,5 +59,25 @@ const styles = StyleSheet.create({
   },
   awaitingSentence:{
     fontSize: responsiveFontSize(3.5),
+  },
+  firstRowWrapper:{
+    flexDirection:'row'
+  },
+  firstRowTextWrapper:{
+    fontSize:responsiveFontSize(4), 
+    width: width * 0.8, 
+    height: height * 0.1, 
+    alignItems:'center', 
+    justifyContent:'flex-end', 
+    paddingLeft:width * 0.08, 
+    paddingTop: height * 0.04
+  },
+  closeIconWrapper:{
+    width : width * 0.2, 
+    height: height * 0.08, 
+    alignItems:'flex-start', 
+    justifyContent:'center', 
+    paddingLeft: width * 0.06, 
+    paddingTop: height * 0.05
   },
 });

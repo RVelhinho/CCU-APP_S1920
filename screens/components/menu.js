@@ -22,8 +22,8 @@ export default function Menu(props) {
             <View style={styles.profileWrapper}>
                 <Image source={require('../../assets/images/profile_picture.png')} style={{width: width * 0.2, height: height * 0.1,borderRadius: 50}}></Image>
                 <View style={styles.profileDescription}>
-                    <Text style={styles.profileName}>Mike Lewis</Text>
-                    <Text style={styles.profileSecondaryAttribute}>mike_lewis98@gmail.com</Text>
+                    <Text style={styles.profileName}>{props.profile.name}</Text>
+                    <Text style={styles.profileSecondaryAttribute}>Cartão {props.profile.cardStatus}</Text>
                 </View>
                 <View style={styles.closeIconWrapper}>
                     <Ionicons
@@ -35,7 +35,7 @@ export default function Menu(props) {
                 </View>
             </View>
             <View style={styles.hrLine}/>
-            <TouchableOpacity onPress={props.onNavigate} style={styles.optionWrapper}>
+            <TouchableOpacity onPress={props.onPressMenuVoyage} style={styles.optionWrapper}>
                 <View style={styles.optionIconWrapper}>
                     <Ionicons
                     name={'md-card'}

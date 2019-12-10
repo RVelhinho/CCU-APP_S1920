@@ -4,7 +4,6 @@ import { createStackNavigator} from 'react-navigation-stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import ValidationScreen from '../screens/ValidationScreen';
-import VoyageScreen from '../screens/VoyageScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -15,7 +14,6 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Validation: ValidationScreen,
-    Voyage: VoyageScreen,
   },
   {
     initalRouteName: 'Home',

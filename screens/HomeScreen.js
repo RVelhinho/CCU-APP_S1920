@@ -8,6 +8,7 @@ import * as Permissions from 'expo-permissions';
 import Map from './components/map';
 import BottomNavigator from './components/bottomNavigator';
 import Menu from './components/menu';
+import MenuVoyage from './components/menuVoyage';
 import Settings from './components/settings';
 import Station from './components/station';
 import DestinationInput from './components/destinationInput';
@@ -52,11 +53,14 @@ export default function HomeScreen(props) {
     const [destination, setDestination] = React.useState(null);
     const [voyageOrigin, setVoyageOrigin] = React.useState(null);
     const [voyageDestination, setVoyageDestination] = React.useState(null);
-    const [isVisible, setIsVisible] = React.useState({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false });
+    const [isVisible, setIsVisible] = React.useState({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false });
     const [typingOrigin, setTypingOrigin] = React.useState('');
     const [typingDestination, setTypingDestination] = React.useState('');
     const [station_data, setData] = React.useState(DATA)
     const [selectedInput, setSelecedInput] = React.useState('')
+    const [profile, setProfile] = React.useState({name: 'Mike Lewis', cardStatus:'inválido', balance: 50, voyages: 0})
+    const [switches, setSwitches] = React.useState({passRenewal: false, voyageConvergion: false})
+
     React.useEffect(async () => {
         const { status } = await Permissions.getAsync(Permissions.LOCATION)
         if (status != 'granted') {
@@ -87,32 +91,32 @@ export default function HomeScreen(props) {
     function onMarkerPressHandler(location) {
         setDestination(location)
         setIsVisible(prevState => {
-            return { ...prevState, isStationSelected: true, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false}
+            return { ...prevState, isStationSelected: true, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false}
         })
     }
     function onMapPressHandler() {
         setIsVisible(prevState => {
-            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false }
+            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false }
         })
     }
     function onMenuPressHandler(){
         setIsVisible(prevState => {
-            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: true, isSettingsSelected: false }
+            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: true, isSettingsSelected: false, isMenuVoyageSelected: false }
         })
     }
     function onSettingsPressHandler(){
         setIsVisible(prevState => {
-            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: true }
+            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: true, isMenuVoyageSelected: false }
         })
     }
     function onClosePressHandler() {
         setIsVisible(prevState => {
-            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false }
+            return { ...prevState, isStationSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false }
         })
     }
     function onInputPressDestinationHandler() {
         setData(DATA)
-        setIsVisible({ isStationSelected: false, isInputSelected: true, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false })
+        setIsVisible({ isStationSelected: false, isInputSelected: true, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false })
         setSelecedInput('destination')
     }
     function onInputPressOriginHandler() {
@@ -120,7 +124,7 @@ export default function HomeScreen(props) {
         setSelecedInput('origin')
     }
     function onArrowBackPressHandler() {
-        setIsVisible({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false })
+        setIsVisible({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false })
         setSelecedInput('')
     }
     function onItemPressHandler(title) {
@@ -129,7 +133,7 @@ export default function HomeScreen(props) {
     }
     function onSearchPressHandler() {
         if (all_stations.includes(typingOrigin) && all_stations.includes(typingDestination) && (typingOrigin != typingDestination)) {
-            setIsVisible({ isStationSelected: false, isInputSelected: false, isVoyageSelected: true, isMenuSelected: false, isSettingsSelected: false })
+            setIsVisible({ isStationSelected: false, isInputSelected: false, isVoyageSelected: true, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false })
             locations.map((location, idx) => {
                 const { station } = location
                 if (station == typingOrigin) {
@@ -171,35 +175,71 @@ export default function HomeScreen(props) {
             }
         });
     }
-  return (
-    <View style={styles.container}>
-        <Map latitude={latitude} longitude={longitude} locations={locations} 
-             onMarkerPress={onMarkerPressHandler} onMapPress={onMapPressHandler}/>
-        <BottomNavigator onNavigate={() => props.navigation.navigate('Validation')} 
-                         onMenuPress={onMenuPressHandler}
-                         onSettingsPress={onSettingsPressHandler}/>
-        {isVisible.isMenuSelected ?     <Menu onClosePress={onClosePressHandler} onNavigate={() => props.navigation.navigate('Voyage')}/>
-                                        :null}
 
-        {isVisible.isSettingsSelected ? <Settings onClosePress={onClosePressHandler}/>
-                                        :null}
+    function onPressSwitchVoyageHandler(){
+        const new_value = !switches.voyageConvergion
+        setSwitches(prevState => {
+            return { ...prevState, voyageConvergion: new_value}
+        })
+    }
 
-        {isVisible.isStationSelected ?  <Station onClosePress={onClosePressHandler} switchLines={switchLinesHandler} destination={destination}/>
-                                        : null}
+    function onPressSwitchPassValidityHandler(){
+        if (profile.cardStatus == 'inválido' && profile.balance >= 30){
+            const new_balance = profile.balance - 30
+            setProfile(prevState => {
+                return { ...prevState, cardStatus:'válido', balance: new_balance, voyages: null}
+            })
+        }
+    }
 
-        {isVisible.isInputSelected?     <DestinationInput station_data={station_data} typingOrigin={typingOrigin} typingDestination={typingDestination} 
-                                        onArrowBackPress={onArrowBackPressHandler} onSearchPress={onSearchPressHandler}
-                                        onInputPressOrigin={onInputPressOriginHandler} onInputPressDestination={onInputPressDestinationHandler}
-                                        onTextChangeOrigin={typingOrigin => onTextChangeOriginHandler(typingOrigin)}
-                                        onTextChangeDestination={typingDestination => onTextChangeDestinationHandler(typingDestination)}
-                                        onItemPress={onItemPressHandler}/>
-                                        
-                                        :<DestinationBar typingDestination={typingDestination} onInputPressDestination={onInputPressDestinationHandler} 
-                                        onTextChangeDestination={typingDestination => onTextChangeDestinationHandler(typingDestination)}/>}
+    function onPressSwitchPassRenewalHandler(){
+        const new_value = !switches.passRenewal
+        setSwitches(prevState => {
+            return { ...prevState, passRenewal: new_value}
+        })
+    }
+    function onPressMenuVoyageHandler(){
+        setIsVisible(prevState => {
+            return { ...prevState, isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: true }
+        })
+    }
+    return (
+        <View style={styles.container}>
+            <Map latitude={latitude} longitude={longitude} locations={locations} 
+                onMarkerPress={onMarkerPressHandler} onMapPress={onMapPressHandler}/>
+            {!isVisible.isMenuVoyageSelected?<BottomNavigator onNavigate={() => props.navigation.navigate('Validation')} 
+                                                                onMenuPress={onMenuPressHandler}
+                                                                onSettingsPress={onSettingsPressHandler}/>
+                                            :null}
+            {isVisible.isMenuSelected ?     <Menu profile={profile} onClosePress={onClosePressHandler} onPressMenuVoyage={onPressMenuVoyageHandler}/>
+                                            :null}
+            
+            {isVisible.isMenuVoyageSelected?<MenuVoyage profile={profile} switches={switches} onClosePress={onClosePressHandler}
+                                                        onPressSwitchVoyage={onPressSwitchVoyageHandler} 
+                                                        onPressSwitchPassValidity={onPressSwitchPassValidityHandler}
+                                                        onPressSwitchPassRenewal={onPressSwitchPassRenewalHandler}/>
+                                            :null}
 
-        {isVisible.isVoyageSelected ?  <Voyage voyageOrigin={voyageOrigin} voyageDestination={voyageDestination} onClosePress={onClosePressHandler}/>
-                                        : null}
-    </View>
+            {isVisible.isSettingsSelected ? <Settings onClosePress={onClosePressHandler}/>
+                                            :null}
+
+            {isVisible.isStationSelected ?  <Station onClosePress={onClosePressHandler} switchLines={switchLinesHandler} destination={destination}/>
+                                            : null}
+
+            {isVisible.isInputSelected?     <DestinationInput station_data={station_data} typingOrigin={typingOrigin} typingDestination={typingDestination} 
+                                            onArrowBackPress={onArrowBackPressHandler} onSearchPress={onSearchPressHandler}
+                                            onInputPressOrigin={onInputPressOriginHandler} onInputPressDestination={onInputPressDestinationHandler}
+                                            onTextChangeOrigin={typingOrigin => onTextChangeOriginHandler(typingOrigin)}
+                                            onTextChangeDestination={typingDestination => onTextChangeDestinationHandler(typingDestination)}
+                                            onItemPress={onItemPressHandler}/>
+                                            
+                                            : null}
+            {!isVisible.isMenuVoyageSelected && !isVisible.isInputSelected?<DestinationBar typingDestination={typingDestination} onInputPressDestination={onInputPressDestinationHandler} 
+                                            onTextChangeDestination={typingDestination => onTextChangeDestinationHandler(typingDestination)}/>:null}
+
+            {isVisible.isVoyageSelected ?  <Voyage voyageOrigin={voyageOrigin} voyageDestination={voyageDestination} onClosePress={onClosePressHandler}/>
+                                            : null}
+        </View>
     );
 }
 
