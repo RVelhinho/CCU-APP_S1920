@@ -14,6 +14,7 @@ import Station from './components/station';
 import DestinationInput from './components/destinationInput';
 import DestinationBar from './components/destinationBar';
 import Voyage from './components/voyage';
+import Warning from './components/warning';
 
 const locations_json = require('../locations.json');
 const all_stations = ['Alameda', 'Areeiro', 'Roma', 'Entrecampos', 'Campo Pequeno', 'Saldanha']
@@ -53,7 +54,7 @@ export default function HomeScreen(props) {
     const [destination, setDestination] = React.useState(null);
     const [voyageOrigin, setVoyageOrigin] = React.useState(null);
     const [voyageDestination, setVoyageDestination] = React.useState(null);
-    const [isVisible, setIsVisible] = React.useState({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false });
+    const [isVisible, setIsVisible] = React.useState({ isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: false, isWarningSelected:false });
     const [typingOrigin, setTypingOrigin] = React.useState('');
     const [typingDestination, setTypingDestination] = React.useState('');
     const [station_data, setData] = React.useState(DATA)
@@ -184,10 +185,9 @@ export default function HomeScreen(props) {
     }
 
     function onPressSwitchPassValidityHandler(){
-        if (profile.cardStatus == 'inválido' && profile.balance >= 30){
-            const new_balance = profile.balance - 30
-            setProfile(prevState => {
-                return { ...prevState, cardStatus:'válido', balance: new_balance, voyages: null}
+        if (profile.cardStatus == 'inválido'){
+            setIsVisible(prevState => {
+                return { ...prevState, isWarningSelected: true}
             })
         }
     }
@@ -201,6 +201,22 @@ export default function HomeScreen(props) {
     function onPressMenuVoyageHandler(){
         setIsVisible(prevState => {
             return { ...prevState, isStationSelected: false, isInputSelected: false, isVoyageSelected: false, isMenuSelected: false, isSettingsSelected: false, isMenuVoyageSelected: true }
+        })
+    }
+    function onYesPressHandler(){
+        if (profile.cardStatus == 'inválido' && profile.balance >= 30){
+            const new_balance = profile.balance - 30
+            setProfile(prevState => {
+                return { ...prevState, cardStatus:'válido', balance: new_balance, voyages: null}
+            })
+        }
+        setIsVisible(prevState => {
+            return { ...prevState, isWarningSelected: false}
+        })
+    }
+    function onNoPressHandler(){
+        setIsVisible(prevState => {
+            return { ...prevState, isWarningSelected: false}
         })
     }
     return (
@@ -219,6 +235,9 @@ export default function HomeScreen(props) {
                                                         onPressSwitchPassValidity={onPressSwitchPassValidityHandler}
                                                         onPressSwitchPassRenewal={onPressSwitchPassRenewalHandler}/>
                                             :null}
+            
+            {isVisible.isWarningSelected? <Warning onYesPress={onYesPressHandler} onNoPress={onNoPressHandler}/>
+                                                :null}
 
             {isVisible.isSettingsSelected ? <Settings onClosePress={onClosePressHandler}/>
                                             :null}

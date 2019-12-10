@@ -3,6 +3,7 @@ import { View, Text, Dimensions, StyleSheet,Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
+import Warning from './warning';
 const {width, height} = Dimensions.get('screen')
 
 export default function MenuVoyage(props) {
