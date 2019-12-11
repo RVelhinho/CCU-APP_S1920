@@ -18,7 +18,7 @@ export default function ValidationScreen(props) {
           />
         </TouchableOpacity>
         <Text style={styles.firstRowTextWrapper}>
-          Validar Titulo
+          Ticket Validation 
         </Text>
       </View>
       <View style={styles.imageContainer}>
@@ -26,10 +26,10 @@ export default function ValidationScreen(props) {
       </View>
       <View style={styles.awaitingValidationContainer}>
         <Text style={styles.requestSentence}>
-          Por favor aproximar do Sensor.
+          Please approach the device to the sensor
         </Text>
         <Text style={styles.awaitingSentence}>
-          Aguardando...
+          Waiting...
         </Text>
       </View>
     </View>
@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   requestSentence:{
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(2.5),
   },
   awaitingSentence:{
+    marginTop: height * 0.05,
     fontSize: responsiveFontSize(3.5),
   },
   firstRowWrapper:{
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     height: height * 0.1, 
     alignItems:'center', 
     justifyContent:'flex-end', 
-    paddingLeft:width * 0.08, 
+    paddingLeft:width * 0.02, 
     paddingTop: height * 0.04
   },
   closeIconWrapper:{

@@ -13,9 +13,9 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/slash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#202020"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -28,8 +28,8 @@
     },
     "android": {
       "package": "com.ist.skrrtthemrails",
-      "versionCode": 1,
-      "icon": "./assets/images/icon.png",
+      "versionCode": 1.0,
+      "icon":"./assets/images/icon.png",
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
@@ -63,10 +63,9 @@
         }
       },
       "splash": {
-        "image": "./assets/images/icon.png",
-        "backgroundColor": "#ffffff"
+        "image":"./assets/images/splash.png",
+        "backgroundColor":"#ffffff"
       }
-    },
-    "description": ""
+    }
   }
 }

@@ -59,8 +59,8 @@ export default function HomeScreen(props) {
     const [typingDestination, setTypingDestination] = React.useState('');
     const [station_data, setData] = React.useState(DATA)
     const [selectedInput, setSelecedInput] = React.useState('')
-    const [profile, setProfile] = React.useState({name: 'Mike Lewis', cardStatus:'inválido', balance: 50, voyages: 0})
-    const [switches, setSwitches] = React.useState({passRenewal: false, voyageConvergion: false})
+    const [profile, setProfile] = React.useState({name: 'Mike Lewis', cardStatus:'invalid', balance: 50, voyages: 0})
+    const [switches, setSwitches] = React.useState({passRenewal: false})
 
     React.useEffect(async () => {
         const { status } = await Permissions.getAsync(Permissions.LOCATION)
@@ -177,15 +177,8 @@ export default function HomeScreen(props) {
         });
     }
 
-    function onPressSwitchVoyageHandler(){
-        const new_value = !switches.voyageConvergion
-        setSwitches(prevState => {
-            return { ...prevState, voyageConvergion: new_value}
-        })
-    }
-
     function onPressSwitchPassValidityHandler(){
-        if (profile.cardStatus == 'inválido'){
+        if (profile.cardStatus == 'invalid'){
             setIsVisible(prevState => {
                 return { ...prevState, isWarningSelected: true}
             })
@@ -204,10 +197,10 @@ export default function HomeScreen(props) {
         })
     }
     function onYesPressHandler(){
-        if (profile.cardStatus == 'inválido' && profile.balance >= 30){
+        if (profile.cardStatus == 'invalid' && profile.balance >= 30){
             const new_balance = profile.balance - 30
             setProfile(prevState => {
-                return { ...prevState, cardStatus:'válido', balance: new_balance, voyages: null}
+                return { ...prevState, cardStatus:'valid', balance: new_balance, voyages: null}
             })
         }
         setIsVisible(prevState => {
@@ -231,7 +224,6 @@ export default function HomeScreen(props) {
                                             :null}
             
             {isVisible.isMenuVoyageSelected?<MenuVoyage profile={profile} switches={switches} onClosePress={onClosePressHandler}
-                                                        onPressSwitchVoyage={onPressSwitchVoyageHandler} 
                                                         onPressSwitchPassValidity={onPressSwitchPassValidityHandler}
                                                         onPressSwitchPassRenewal={onPressSwitchPassRenewalHandler}/>
                                             :null}

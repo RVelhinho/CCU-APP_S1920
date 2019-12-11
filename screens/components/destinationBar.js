@@ -22,7 +22,7 @@ export default function DestinationBar(props) {
                 color={'black'}
                 style={{ width: width * 0.1 }}
             />
-            <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={props.typingDestination} onTouchStart={props.onInputPressDestination} onChangeText={props.onTextChangeDestination}>
+            <TextInput placeholder='Destination' style={styles.SearchDestinationInput} value={props.typingDestination} onTouchStart={props.onInputPressDestination} onChangeText={props.onTextChangeDestination}>
             </TextInput>
         </View>
     )

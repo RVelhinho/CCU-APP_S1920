@@ -23,7 +23,7 @@ export default function Menu(props) {
                 <Image source={require('../../assets/images/profile_picture.png')} style={{width: width * 0.2, height: height * 0.1,borderRadius: 50}}></Image>
                 <View style={styles.profileDescription}>
                     <Text style={styles.profileName}>{props.profile.name}</Text>
-                    <Text style={styles.profileSecondaryAttribute}>Cartão {props.profile.cardStatus}</Text>
+                    <Text style={styles.profileSecondaryAttribute}>Card {props.profile.cardStatus}</Text>
                 </View>
                 <View style={styles.closeIconWrapper}>
                     <Ionicons
@@ -45,7 +45,7 @@ export default function Menu(props) {
                     </Ionicons>
                 </View>
                 <View style={styles.optionTextWrapper}>
-                    <Text style={styles.unblockedText}>Viagens</Text>
+                    <Text style={styles.unblockedText}>Travels</Text>
                 </View>
             </TouchableOpacity>
             <View style={styles.optionWrapper}>
@@ -58,7 +58,7 @@ export default function Menu(props) {
                     </Ionicons>
                 </View>
                 <View style={styles.optionTextWrapper}>
-                    <Text style={styles.blockedText}>Documentos</Text>
+                    <Text style={styles.blockedText}>Documents</Text>
                 </View>
             </View>
             <View style={styles.optionWrapper}>
@@ -71,7 +71,7 @@ export default function Menu(props) {
                     </Ionicons>
                 </View>
                 <View style={styles.optionTextWrapper}>
-                    <Text style={styles.blockedText}>Descontos</Text>
+                    <Text style={styles.blockedText}>Discounts</Text>
                 </View>
             </View>
             <View style={styles.optionWrapper}>
@@ -84,7 +84,7 @@ export default function Menu(props) {
                     </Ionicons>
                 </View>
                 <View style={styles.optionTextWrapper}>
-                    <Text style={styles.blockedText}>Controlo Parental</Text>
+                    <Text style={styles.blockedText}>Parental control</Text>
                 </View>
             </View>
         </View>

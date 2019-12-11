@@ -67,7 +67,7 @@ export default function DestinationInput(props) {
                         color={'black'}
                         style={styles.searchHelperIcon}
                     />
-                    <TextInput placeholder='Origem' style={styles.SearchDestinationInput} value={props.typingOrigin} onTouchStart={props.onInputPressOrigin} onChangeText={props.onTextChangeOrigin}>
+                    <TextInput placeholder='Origin' style={styles.SearchDestinationInput} value={props.typingOrigin} onTouchStart={props.onInputPressOrigin} onChangeText={props.onTextChangeOrigin}>
                     </TextInput>
                 </View>
                 <View style={styles.SearchDestinationContainer}>
@@ -77,7 +77,7 @@ export default function DestinationInput(props) {
                         color={'black'}
                         style={styles.searchHelperIcon}
                     />
-                    <TextInput placeholder='Destino' style={styles.SearchDestinationInput} value={props.typingDestination} onTouchStart={props.onInputPressDestination} onChangeText={props.onTextChangeDestination}>
+                    <TextInput placeholder='Destination' style={styles.SearchDestinationInput} value={props.typingDestination} onTouchStart={props.onInputPressDestination} onChangeText={props.onTextChangeDestination}>
                     </TextInput>
                 </View>
             </View>

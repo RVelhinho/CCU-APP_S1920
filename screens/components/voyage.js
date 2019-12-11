@@ -18,8 +18,8 @@ export default function Voyage(props) {
         <View>
             <View style={styles.VoyageContainer}>
                 <View style={styles.firstRow}>
-                    <Text style={styles.firstRowfirstText}>Viagem</Text>
-                    <Text style={styles.firstRowSecondText}>Tempo de chegada</Text>
+                    <Text style={styles.firstRowfirstText}>Travel</Text>
+                    <Text style={styles.firstRowSecondText}>Arrival Time</Text>
                     <Ionicons
                         name={'md-close'}
                         size={35}
@@ -91,14 +91,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     arrivalTimesTopVoyage: {
-        width: width * 0.7,
+        width: width * 0.5,
         fontSize: responsiveFontSize(2.5),
-        paddingLeft: width * 0.1,
     },
     arrivalTimeBotVoyage: {
-        width: width * 0.7,
+        width: width * 0.5,
         fontSize: responsiveFontSize(2.5),
-        paddingLeft: width * 0.1,
     },
     closeStyle: {
         width: width * 0.1,
@@ -110,7 +108,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     firstRowfirstText:{
-        width: width * 0.4, 
+        width: width * 0.5, 
         fontSize: responsiveFontSize(2.5), 
         fontWeight: 'bold'
     },
@@ -126,7 +124,7 @@ const styles = StyleSheet.create({
     },
     minText:{
         width: width * 0.5, 
-        fontSize: responsiveFontSize(2.5), 
+        fontSize: responsiveFontSize(1.5), 
         fontWeight: 'bold'
     }
 })

@@ -3,15 +3,14 @@ import { View, Text, Dimensions, StyleSheet,Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
-import Warning from './warning';
 const {width, height} = Dimensions.get('screen')
 
 export default function MenuVoyage(props) {
   function checkValidityText(){
-    if (props.profile.cardStatus == 'válido'){
-      return 'Desativar passe'
+    if (props.profile.cardStatus == 'valid'){
+      return 'Cancel pass'
     }
-    else return 'Ativar passe'
+    else return 'Renew pass now'
   }
   return (
     <View style={styles.container}>
@@ -24,7 +23,7 @@ export default function MenuVoyage(props) {
         </TouchableOpacity>
         <View style={styles.firstRowTextWrapper}>
             <Text style={styles.bigText}>
-                Viagens
+                Travels
             </Text>
         </View>
       </View>
@@ -32,32 +31,24 @@ export default function MenuVoyage(props) {
       <View style={styles.rowWrapper}>
         <View style={styles.columnWrapper}>
           <Text style={styles.mediumText}>{props.profile.voyages}</Text>
-          <Text style={styles.mediumText}>Viagens</Text>
+          <Text style={styles.mediumText}>Tickets</Text>
         </View>
         <View style={styles.columnWrapper}>
           <Text style={styles.mediumText}>€{props.profile.balance}</Text>
-          <Text style={styles.mediumText}>Saldo</Text>
+          <Text style={styles.mediumText}>Balance</Text>
         </View>
         <View style={styles.columnWrapper}>
-          <Text style={styles.mediumText}>Cartão</Text>
+          <Text style={styles.mediumText}>Card</Text>
           <Text style={styles.mediumText}>{props.profile.cardStatus}</Text>
         </View>
       </View>
 
       <View style={styles.noSwitchRowTextWrapper}>
-        <Text style={styles.smallBlockedText}>Adicionar Fundos</Text>
+        <Text style={styles.smallBlockedText}>Add funds</Text>
       </View>
 
       <View style={styles.noSwitchRowTextWrapper}>
-        <Text style={styles.smallBlockedText}>Comprar Viagens</Text>
-      </View>
-
-      <View style={styles.switchRowWrapper}>
-        <View style={styles.switchRowTextWrapper}>
-          <Text style={styles.smallUnblockedText}>Converter viagens automaticamente</Text>
-          <Text style={styles.smallerBlockedText}>Converter o saldo disponível em viagens, sempre que possivel</Text>
-        </View>
-        <Switch style={styles.switch} onValueChange={props.onPressSwitchVoyage} value={props.switches.voyageConvergion}/>
+        <Text style={styles.smallBlockedText}>Buy tickets</Text>
       </View>
 
       <View style={styles.noSwitchRowTextWrapper}>
@@ -68,8 +59,8 @@ export default function MenuVoyage(props) {
 
       <View style={styles.switchRowWrapper}>
         <View style={styles.switchRowTextWrapper}>
-          <Text style={styles.smallUnblockedText}>Renovar passe automaticamente</Text>
-          <Text style={styles.smallerBlockedText}>Renovar o passe no início de cada mês automaticamente, sempre que houver saldo disponível</Text>
+          <Text style={styles.smallUnblockedText}>Renew pass automatically</Text>
+          <Text style={styles.smallerBlockedText}>Renew the pass at the beginning of every month, provided there is enough balance</Text>
         </View>
         <Switch style={styles.switch} onValueChange={props.onPressSwitchPassRenewal} value={props.switches.passRenewal}/>
       </View>

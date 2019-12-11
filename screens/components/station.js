@@ -34,9 +34,9 @@ export default function Station(props) {
                 />
             </View>
             <View style={styles.descText}>
-                <Text style={styles.descFirstText}>Sentido:
+                <Text style={styles.descFirstText}>End Station:
                 </Text>
-                <Text style={styles.descSecondText}>Tempos de chegada:
+                <Text style={styles.descSecondText}>Arrival Time:
                 </Text>
             </View>
             <View style={styles.topLine}>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     stationName: {
         fontSize: responsiveFontSize(3),
-        width: width * 0.4,
+        width: width * 0.5,
         fontWeight: "bold",
     },
     endStationTop: {
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
     },
     descText: {
+        marginTop: height * 0.02,
         flexDirection: 'row',
     },
     topLine: {
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     descFirstText:{
-        width: width * 0.3, 
+        width: width * 0.4, 
         fontSize: responsiveFontSize(2.5), 
         fontWeight: "bold", 
         alignSelf: 'flex-start'
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     },
     minText:{
         width: width * 0.6, 
-        fontSize: responsiveFontSize(2.5), 
+        fontSize: responsiveFontSize(1.5), 
         fontWeight: "bold", 
         alignSelf: 'flex-start'
     }
